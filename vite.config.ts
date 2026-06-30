@@ -1,19 +1,19 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
-import tailwindcss from "@tailwindcss/vite"; // <-- Tailwind plugin import
+import tsconfigPaths from "vite-tsconfig-paths";
 
-// https://vitejs.dev/config/
+// Explicit array mapping structure for Wrangler's compiler tracking
 export default defineConfig({
   plugins: [
-    TanStackRouterVite(),
+    TanStackRouterVite({
+      autoCodeSplitting: true,
+    }),
     react(),
-    tailwindcss(), // <-- Tailwind plugin active kar diya
     tsconfigPaths(),
   ],
-  server: {
-    host: "::",
-    port: 8080,
+  resolve: {
+    // Native Vite resolution optimization paths replacement directive
+    tsconfigPaths: true,
   },
 });
