@@ -29,10 +29,12 @@ export const WHATSAPP_URL = `https://wa.me/${PHONE_PRIMARY_TEL.replace("+", "")}
   "Hi, I need help with a name change / gazette notification.",
 )}`;
 
+// Yahan maine Blog ka link add kar diya hai
 const NAV_LINKS = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
-  { to: "/how-it-works", label: "How it Works" },
+  { to: "/aboutus", label: "About Us" },
+  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ] as const;
 

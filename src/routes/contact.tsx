@@ -10,7 +10,8 @@ import {
   Clock, 
   ShieldCheck, 
   HelpCircle,
-  FileText
+  FileText,
+  Loader2
 } from "lucide-react";
 import {
   PHONE_PRIMARY,
@@ -229,13 +230,37 @@ function ContactPage() {
 }
 
 function ContactForm() {
-  const [sent, setSent] = useState(false);
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
-    (e.currentTarget as HTMLFormElement).reset();
-    setTimeout(() => setSent(false), 4000);
+    setStatus("loading");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      // API Call Placeholder: 
+      // Yahan aap apna backend (Supabase, Web3Forms, ya Formspree) ka endpoint add kar sakte hain.
+      // Example: await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
+      
+      console.log("Form Data Submitted:", data); // Check console to see the captured data
+
+      // Abhi ke liye network request simulate karne ke liye 1.5s ka delay
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      setStatus("success");
+      form.reset();
+      
+      // 4 seconds baad wapas idle state par
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch (error) {
+      console.error("Submission failed:", error);
+      setStatus("error");
+    }
   }
+
   return (
     <form
       onSubmit={onSubmit}
@@ -257,9 +282,10 @@ function ContactForm() {
             name="name"
             type="text"
             required
+            disabled={status === "loading"}
             aria-label="Full name"
             placeholder="John Doe"
-            className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 font-medium"
+            className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 font-medium disabled:opacity-60"
           />
         </div>
         <div>
@@ -271,9 +297,10 @@ function ContactForm() {
             name="phone"
             type="tel"
             required
+            disabled={status === "loading"}
             aria-label="Phone number"
             placeholder="+91 XXXXX XXXXX"
-            className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 font-medium"
+            className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 font-medium disabled:opacity-60"
           />
         </div>
       </div>
@@ -285,15 +312,16 @@ function ContactForm() {
           id="service"
           name="service"
           required
+          disabled={status === "loading"}
           aria-label="Service required"
-          className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 font-bold text-slate-700"
+          className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 font-bold text-slate-700 disabled:opacity-60"
         >
           <option value="">Choose your processing segment...</option>
-          <option>Central Gazette Notification</option>
-          <option>Name Change After Marriage / Divorce Reversion</option>
-          <option>Judicial Affidavit Preparation</option>
-          <option>Government Record Up-dation Support</option>
-          <option>Other Discrepancy Rectifications</option>
+          <option value="gazette">Central Gazette Notification</option>
+          <option value="marriage_divorce">Name Change After Marriage / Divorce Reversion</option>
+          <option value="affidavit">Judicial Affidavit Preparation</option>
+          <option value="govt_update">Government Record Up-dation Support</option>
+          <option value="other">Other Discrepancy Rectifications</option>
         </select>
       </div>
       <div className="mt-5">
@@ -304,29 +332,52 @@ function ContactForm() {
           id="message"
           name="message"
           rows={4}
+          required
+          disabled={status === "loading"}
           aria-label="Message"
           placeholder="Please describe the spelling errors or structural variations across your certificates..."
-          className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 font-medium"
+          className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 font-medium disabled:opacity-60"
         />
       </div>
       
       <div className="mt-6 flex flex-col sm:flex-row items-center gap-4 border-t border-slate-100 pt-6">
         <button
           type="submit"
+          disabled={status === "loading" || status === "success"}
           aria-label="Submit consultation request"
-          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-base font-bold text-white shadow-brand transition transform hover:translate-y-[-1px] hover:opacity-95 sm:w-auto"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-base font-bold text-white shadow-brand transition transform hover:translate-y-[-1px] hover:opacity-95 sm:w-auto disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
         >
-          Request Free Consultation <ArrowRight className="h-5 w-5" />
+          {status === "loading" ? (
+            <>
+              <Loader2 className="h-5 w-5 animate-spin" /> Processing...
+            </>
+          ) : status === "success" ? (
+            <>
+              <CheckCircle2 className="h-5 w-5" /> Submitted
+            </>
+          ) : (
+            <>
+              Request Free Consultation <ArrowRight className="h-5 w-5" />
+            </>
+          )}
         </button>
         <div className="flex items-center gap-1.5 text-xs text-slate-400 font-bold">
           <FileText className="w-3.5 h-3.5 text-primary" /> End-to-end data privacy guaranteed.
         </div>
       </div>
 
-      {sent && (
-        <p role="status" className="mt-4 text-sm font-bold text-primary flex items-center gap-1.5">
-          <ShieldCheck className="w-4 h-4 text-emerald-600" /> Thank you! We have received your request and will call you shortly.
-        </p>
+      {status === "success" && (
+        <div role="status" className="mt-6 p-4 rounded-lg bg-emerald-50 border border-emerald-100 text-sm font-bold text-emerald-700 flex items-center gap-2">
+          <ShieldCheck className="w-5 h-5 text-emerald-600" /> 
+          Thank you! We have received your request and our desk will call you shortly.
+        </div>
+      )}
+
+      {status === "error" && (
+        <div role="status" className="mt-6 p-4 rounded-lg bg-red-50 border border-red-100 text-sm font-bold text-red-700 flex items-center gap-2">
+          <AlertTriangle className="w-5 h-5 text-red-600" /> 
+          Something went wrong. Please try submitting again or contact us directly.
+        </div>
       )}
     </form>
   );
