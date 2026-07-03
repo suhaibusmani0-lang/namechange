@@ -12,4 +12,10 @@ export default defineConfig({
     tailwindcss(),
     tsconfigPaths(),
   ],
+  server: {
+    // Ye line aapke infinite reload ko band kar degi
+    watch: {
+      ignored: ['**/server/**'], 
+    },
+  },
 });

@@ -1,17 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Building2, 
-  ArrowRight, 
-  MessageCircle, 
-  Clock, 
-  ShieldCheck, 
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Building2,
+  ArrowRight,
+  MessageCircle,
+  Clock,
+  ShieldCheck,
   HelpCircle,
   FileText,
-  Loader2
+  Loader2,
+  AlertTriangle,
+  CheckCircle2,
 } from "lucide-react";
 import {
   PHONE_PRIMARY,
@@ -35,7 +37,8 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: "Contact Legal Consultation Desk | Name Change Expert" },
       {
         property: "og:description",
-        content: "Schedule an expert evaluation log at our Burari or Uttam Nagar corporate offices for structured documentation assistance.",
+        content:
+          "Schedule an expert evaluation log at our Burari or Uttam Nagar corporate offices for structured documentation assistance.",
       },
       { property: "og:url", content: "/contact" },
     ],
@@ -47,7 +50,6 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <div className="bg-slate-50 text-slate-800 antialiased font-sans">
-      {/* Page Hero Component */}
       <PageHero
         eyebrow="Connect With Our Experts"
         title={
@@ -60,8 +62,6 @@ function ContactPage() {
 
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          {/* Quick CTA Quick Launch Links */}
           <div className="mb-12 grid gap-4 sm:grid-cols-3">
             <a
               href={`tel:${PHONE_PRIMARY_TEL}`}
@@ -88,13 +88,10 @@ function ContactPage() {
             </a>
           </div>
 
-          {/* Core Interface Splitter */}
           <div className="grid gap-10 lg:grid-cols-5 items-start">
-            
-            {/* Left Column: Form Module */}
+            {/* Form Component Render */}
             <ContactForm />
-            
-            {/* Right Column: Address and Operational Matrices */}
+
             <aside className="space-y-6 lg:col-span-2">
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                 <h2 className="text-lg font-bold text-navy flex items-center gap-2 border-b border-slate-100 pb-3">
@@ -104,7 +101,9 @@ function ContactPage() {
                   <li className="flex items-start gap-3">
                     <Phone className="mt-0.5 h-4 w-4 text-primary shrink-0" aria-hidden />
                     <div>
-                      <span className="block text-xs font-black text-slate-400 uppercase tracking-wider mb-1">Direct Call Terminals</span>
+                      <span className="block text-xs font-black text-slate-400 uppercase tracking-wider mb-1">
+                        Direct Call Terminals
+                      </span>
                       <a
                         href={`tel:${PHONE_PRIMARY_TEL}`}
                         className="block font-bold text-navy hover:text-primary text-base transition-colors"
@@ -122,7 +121,9 @@ function ContactPage() {
                   <li className="flex items-start gap-3 border-t border-slate-50 pt-3">
                     <Mail className="mt-0.5 h-4 w-4 text-primary shrink-0" aria-hidden />
                     <div>
-                      <span className="block text-xs font-black text-slate-400 uppercase tracking-wider mb-1">Secure Inbox Systems</span>
+                      <span className="block text-xs font-black text-slate-400 uppercase tracking-wider mb-1">
+                        Secure Inbox Systems
+                      </span>
                       <a
                         href={`mailto:${EMAIL}`}
                         className="font-bold text-navy hover:text-primary text-base transition-colors"
@@ -134,7 +135,6 @@ function ContactPage() {
                 </ul>
               </div>
 
-              {/* Localized Office Layout Blocks */}
               {[
                 {
                   tag: "Corporate Head Office",
@@ -171,7 +171,6 @@ function ContactPage() {
         </div>
       </section>
 
-      {/* Extended Corporate Trust Matrix Section */}
       <section className="py-16 bg-slate-900 text-white border-t border-slate-800 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-brand opacity-10 pointer-events-none" />
         <div className="max-w-5xl mx-auto px-4 text-center">
@@ -182,27 +181,38 @@ function ContactPage() {
             What Happens After You Submit A Consultation Ticket?
           </h2>
           <p className="text-sm text-slate-300 mt-3 max-w-2xl mx-auto leading-relaxed">
-            Our verification networks treat incoming records with strict privacy protocols. Your documentation flow runs through automated security pipelines.
+            Our verification networks treat incoming records with strict privacy protocols. Your
+            documentation flow runs through automated security pipelines.
           </p>
-          
+
           <div className="grid md:grid-cols-3 gap-6 mt-12 text-left">
             {[
-              { title: "Immediate Document Evaluation", text: "A legal specialist calls you back within an hour to analyze your case details and check certificate text configurations." },
-              { title: "Flawless File Assembly", text: "We prepare clear proforma files and signature sheets based on active federal rules to eliminate technical layout defects." },
-              { title: "Direct Administrative Filing", text: "Our staff handles delivery directly at the Central Department of Publication counters in New Delhi." }
+              {
+                title: "Immediate Document Evaluation",
+                text: "A legal specialist calls you back within an hour to analyze your case details and check certificate text configurations.",
+              },
+              {
+                title: "Flawless File Assembly",
+                text: "We prepare clear proforma files and signature sheets based on active federal rules to eliminate technical layout defects.",
+              },
+              {
+                title: "Direct Administrative Filing",
+                text: "Our staff handles delivery directly at the Central Department of Publication counters in New Delhi.",
+              },
             ].map((step, idx) => (
               <div key={idx} className="bg-white/5 border border-white/10 p-5 rounded-xl">
                 <h4 className="font-bold text-white text-base flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-indigo-400" /> {step.title}
                 </h4>
-                <p className="text-xs text-slate-300 mt-2 leading-relaxed font-medium">{step.text}</p>
+                <p className="text-xs text-slate-300 mt-2 leading-relaxed font-medium">
+                  {step.text}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Dedicated FAQ Blocks on Identity Processing */}
       <section className="py-16 bg-white border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4">
           <h3 className="text-2xl font-black text-navy tracking-tight text-center mb-10">
@@ -210,15 +220,29 @@ function ContactPage() {
           </h3>
           <div className="space-y-4">
             {[
-              { q: "Is there any charge for the initial consultation ticket?", a: "No. Our preliminary analysis, certificate layout checking, and advice regarding structural application categories are completely free of cost." },
-              { q: "What should I bring if I plan to visit the Burari or Uttam Nagar desk?", a: "Please bring along clear physical copies or digital scans of your previous birth certificates, school certificates, or matrimonial records, as well as a government-issued address proof document." },
-              { q: "Can your team manage name updates for clients living outside Delhi?", a: "Yes. Since the e-Gazette is governed by the central printing directorate, our centralized New Delhi hub handles file collections and submissions for applicants all across the country." }
+              {
+                q: "Is there any charge for the initial consultation ticket?",
+                a: "No. Our preliminary analysis, certificate layout checking, and advice regarding structural application categories are completely free of cost.",
+              },
+              {
+                q: "What should I bring if I plan to visit the Burari or Uttam Nagar desk?",
+                a: "Please bring along clear physical copies or digital scans of your previous birth certificates, school certificates, or matrimonial records, as well as a government-issued address proof document.",
+              },
+              {
+                q: "Can your team manage name updates for clients living outside Delhi?",
+                a: "Yes. Since the e-Gazette is governed by the central printing directorate, our centralized New Delhi hub handles file collections and submissions for applicants all across the country.",
+              },
             ].map((faq, idx) => (
-              <div key={idx} className="border border-slate-100 bg-slate-50/50 p-4 rounded-xl flex gap-3 items-start">
+              <div
+                key={idx}
+                className="border border-slate-100 bg-slate-50/50 p-4 rounded-xl flex gap-3 items-start"
+              >
                 <HelpCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-bold text-navy text-sm">{faq.q}</h4>
-                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed font-semibold">{faq.a}</p>
+                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed font-semibold">
+                    {faq.a}
+                  </p>
                 </div>
               </div>
             ))}
@@ -229,31 +253,47 @@ function ContactPage() {
   );
 }
 
+// ------------------------------------------------------------------
+// CONTACT FORM - UPDATED TO BE 100% BULLETPROOF AGAINST HANGING
+// ------------------------------------------------------------------
 function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  
+  // Controlled State banaya gaya hai taaki input par react ka control rahe
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    service: "",
+    message: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    e.stopPropagation();
+
     setStatus("loading");
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
     try {
-      // API Call Placeholder: 
-      // Yahan aap apna backend (Supabase, Web3Forms, ya Formspree) ka endpoint add kar sakte hain.
-      // Example: await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
-      
-      console.log("Form Data Submitted:", data); // Check console to see the captured data
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Direct state bhej rahe hain
+      });
 
-      // Abhi ke liye network request simulate karne ke liye 1.5s ka delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
       setStatus("success");
-      form.reset();
-      
-      // 4 seconds baad wapas idle state par
+      setFormData({ name: "", phone: "", service: "", message: "" }); // Form clear karo
+
       setTimeout(() => setStatus("idle"), 4000);
     } catch (error) {
       console.error("Submission failed:", error);
@@ -264,12 +304,15 @@ function ContactForm() {
   return (
     <form
       onSubmit={onSubmit}
+      autoComplete="off" // Browser autofill ko rokne ki koshish
       className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:col-span-3"
       aria-label="Contact form"
     >
       <div className="border-b border-slate-100 pb-4 mb-6">
         <h3 className="text-xl font-bold text-navy tracking-tight">Secure Intake Form</h3>
-        <p className="text-xs text-muted-foreground mt-1">Please provide accurate credential information to prevent communication delays.</p>
+        <p className="text-xs text-muted-foreground mt-1">
+          Please provide accurate credential information to prevent communication delays.
+        </p>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
@@ -282,6 +325,9 @@ function ContactForm() {
             name="name"
             type="text"
             required
+            autoComplete="new-password" // Chrome ka ziddi autofill block karne ki ninja trick
+            value={formData.name}
+            onChange={handleChange}
             disabled={status === "loading"}
             aria-label="Full name"
             placeholder="John Doe"
@@ -297,6 +343,9 @@ function ContactForm() {
             name="phone"
             type="tel"
             required
+            autoComplete="new-password"
+            value={formData.phone}
+            onChange={handleChange}
             disabled={status === "loading"}
             aria-label="Phone number"
             placeholder="+91 XXXXX XXXXX"
@@ -312,6 +361,8 @@ function ContactForm() {
           id="service"
           name="service"
           required
+          value={formData.service}
+          onChange={handleChange}
           disabled={status === "loading"}
           aria-label="Service required"
           className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 font-bold text-slate-700 disabled:opacity-60"
@@ -333,13 +384,16 @@ function ContactForm() {
           name="message"
           rows={4}
           required
+          autoComplete="new-password"
+          value={formData.message}
+          onChange={handleChange}
           disabled={status === "loading"}
           aria-label="Message"
           placeholder="Please describe the spelling errors or structural variations across your certificates..."
           className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 font-medium disabled:opacity-60"
         />
       </div>
-      
+
       <div className="mt-6 flex flex-col sm:flex-row items-center gap-4 border-t border-slate-100 pt-6">
         <button
           type="submit"
@@ -367,15 +421,21 @@ function ContactForm() {
       </div>
 
       {status === "success" && (
-        <div role="status" className="mt-6 p-4 rounded-lg bg-emerald-50 border border-emerald-100 text-sm font-bold text-emerald-700 flex items-center gap-2">
-          <ShieldCheck className="w-5 h-5 text-emerald-600" /> 
+        <div
+          role="status"
+          className="mt-6 p-4 rounded-lg bg-emerald-50 border border-emerald-100 text-sm font-bold text-emerald-700 flex items-center gap-2"
+        >
+          <ShieldCheck className="w-5 h-5 text-emerald-600" />
           Thank you! We have received your request and our desk will call you shortly.
         </div>
       )}
 
       {status === "error" && (
-        <div role="status" className="mt-6 p-4 rounded-lg bg-red-50 border border-red-100 text-sm font-bold text-red-700 flex items-center gap-2">
-          <AlertTriangle className="w-5 h-5 text-red-600" /> 
+        <div
+          role="status"
+          className="mt-6 p-4 rounded-lg bg-red-50 border border-red-100 text-sm font-bold text-red-700 flex items-center gap-2"
+        >
+          <AlertTriangle className="w-5 h-5 text-red-600" />
           Something went wrong. Please try submitting again or contact us directly.
         </div>
       )}

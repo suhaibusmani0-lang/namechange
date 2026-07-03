@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { 
-  Phone, 
-  Menu, 
-  X, 
-  Mail, 
-  MessageCircle, 
-  FileSignature, 
-  Facebook, 
-  Instagram, 
-  Linkedin, 
-  Youtube, 
-  Scale, 
-  MapPin, 
-  ShieldCheck, 
-  ExternalLink 
+import {
+  Phone,
+  Menu,
+  X,
+  Mail,
+  MessageCircle,
+  FileSignature,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Youtube,
+  Scale,
+  MapPin,
+  ShieldCheck,
+  ExternalLink,
 } from "lucide-react";
 
 // Direct standard import for the asset layout to avoid JSON reading mismatches
@@ -48,7 +48,7 @@ function Logo() {
       <img
         src={logoAsset}
         alt="Name Change Expert by Home2Home Services"
-        className="h-12 w-auto sm:h-14 object-contain"
+        className="h-18 w-auto sm:h-20 object-contain"
         width={220}
         height={56}
       />
@@ -64,10 +64,15 @@ export function SiteHeader() {
       <div className="bg-slate-950 text-white text-[11px] py-2 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 font-semibold tracking-wide">
           <p className="flex items-center gap-1.5 text-slate-300">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Official Directorate of Printing Compliance Layout
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />{" "}
+            Official Directorate of Printing Compliance Layout
           </p>
-          <a href={`tel:${PHONE_PRIMARY_TEL}`} className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-slate-200 font-bold">
-            <Phone className="w-3 h-3 text-indigo-500" /> Executive Assistance Terminal: {PHONE_PRIMARY}
+          <a
+            href={`tel:${PHONE_PRIMARY_TEL}`}
+            className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-slate-200 font-bold"
+          >
+            <Phone className="w-3 h-3 text-indigo-500" /> Executive Assistance Terminal:{" "}
+            {PHONE_PRIMARY}
           </a>
         </div>
       </div>
@@ -93,7 +98,7 @@ export function SiteHeader() {
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
-        
+
         <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((l) => (
             <Link
@@ -121,7 +126,10 @@ export function SiteHeader() {
       {/* Mobile Nav Menu */}
       {open && (
         <div className="border-t border-border bg-background lg:hidden">
-          <nav aria-label="Mobile" className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3 font-semibold">
+          <nav
+            aria-label="Mobile"
+            className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3 font-semibold"
+          >
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.to}
@@ -160,7 +168,6 @@ export function SiteFooter() {
   return (
     <footer className="bg-slate-950 text-slate-300 border-t border-slate-900 pt-16 pb-8 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-12 border-b border-slate-900 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
-        
         {/* Brand Column Descriptor */}
         <div className="space-y-4">
           <div className="inline-flex rounded-xl bg-white p-3 shadow-md max-w-[240px]">
@@ -171,44 +178,48 @@ export function SiteFooter() {
             />
           </div>
           <p className="text-xs text-slate-400 leading-relaxed font-medium">
-            Delhi&apos;s premier, legally compliant documentation desk specializing in error-free Central Gazette applications, personalized court affidavits, and strategic public notice layouts.
+            Delhi&apos;s premier, legally compliant documentation desk specializing in error-free
+            Central Gazette applications, personalized court affidavits, and strategic public notice
+            layouts.
           </p>
-          
+
           {/* Social Channels Block */}
           <div className="space-y-2 pt-2">
-            <span className="block text-[10px] font-black uppercase text-slate-500 tracking-wider">Follow Our Social Handles</span>
+            <span className="block text-[10px] font-black uppercase text-slate-500 tracking-wider">
+              Follow Our Social Handles
+            </span>
             <div className="flex items-center gap-2.5">
-              <a 
-                href="https://www.facebook.com/share/1GMG3fkkuZ/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.facebook.com/share/1GMG3fkkuZ/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-400 hover:text-white hover:border-indigo-600 hover:bg-indigo-600/10 transition-all shadow-sm"
                 aria-label="Connect on Facebook"
               >
                 <Facebook className="w-4 h-4" />
               </a>
-              <a 
-                href="https://www.instagram.com/home.2homeservices?igsh=MXN2emQzNms0YzJzNA==" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.instagram.com/home.2homeservices?igsh=MXN2emQzNms0YzJzNA=="
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-400 hover:text-white hover:border-pink-500 hover:bg-pink-500/10 transition-all shadow-sm"
                 aria-label="Connect on Instagram"
               >
                 <Instagram className="w-4 h-4" />
               </a>
-              <a 
-                href="https://www.linkedin.com/in/home2home-consultant-services-93939a388?utm_source=share_via&utm_content=profile&utm_medium=member_android" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.linkedin.com/in/home2home-consultant-services-93939a388?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-400 hover:text-white hover:border-sky-600 hover:bg-sky-600/10 transition-all shadow-sm"
                 aria-label="Connect on LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a 
-                href="https://youtube.com/@home2home-z9t?si=5MxyuduEb7wveR9D" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://youtube.com/@home2home-z9t?si=5MxyuduEb7wveR9D"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-400 hover:text-white hover:border-red-600 hover:bg-red-600/10 transition-all shadow-sm"
                 aria-label="Connect on YouTube"
               >
@@ -232,7 +243,12 @@ export function SiteFooter() {
               </li>
             ))}
             <li>
-              <a href="https://egazette.gov.in" target="_blank" rel="noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1">
+              <a
+                href="https://egazette.gov.in"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white transition-colors inline-flex items-center gap-1"
+              >
                 Official Gazette System <ExternalLink className="w-3 h-3 text-indigo-400" />
               </a>
             </li>
@@ -263,34 +279,63 @@ export function SiteFooter() {
           <ul className="space-y-3.5 text-xs font-semibold text-slate-400">
             <li className="flex gap-2">
               <MapPin className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
-              <p><span className="font-bold text-white block text-[10px] uppercase tracking-wider">Corporate Head Office Desk:</span> Kh No-14/11, Street No-36, Chandan Vihar, Burari, Delhi - 110084</p>
+              <p>
+                <span className="font-bold text-white block text-[10px] uppercase tracking-wider">
+                  Corporate Head Office Desk:
+                </span>{" "}
+                Kh No-14/11, Street No-36, Chandan Vihar, Burari, Delhi - 110084
+              </p>
             </li>
             <li className="flex gap-2 border-t border-slate-900 pt-2.5">
               <MapPin className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
-              <p><span className="font-bold text-white block text-[10px] uppercase tracking-wider">Regional Branch Desk:</span> Arya Samaj Rd, near Gupta Jewellery Shop, Block J, Uttam Nagar, Delhi - 110059</p>
+              <p>
+                <span className="font-bold text-white block text-[10px] uppercase tracking-wider">
+                  Regional Branch Desk:
+                </span>{" "}
+                Arya Samaj Rd, near Gupta Jewellery Shop, Block J, Uttam Nagar, Delhi - 110059
+              </p>
             </li>
             <li className="border-t border-slate-900 pt-2.5 space-y-1 font-bold">
-              <span className="block text-[10px] text-slate-500 uppercase tracking-wider">Direct Hotlines:</span>
-              <a href={`tel:${PHONE_PRIMARY_TEL}`} className="block hover:text-white text-slate-300">{PHONE_PRIMARY}</a>
-              <a href={`tel:${PHONE_SECONDARY_TEL}`} className="block hover:text-white text-slate-300">{PHONE_SECONDARY}</a>
-              <a href={`mailto:${EMAIL}`} className="block hover:text-white text-slate-300 pt-1 text-[11px] underline font-mono">{EMAIL}</a>
+              <span className="block text-[10px] text-slate-500 uppercase tracking-wider">
+                Direct Hotlines:
+              </span>
+              <a
+                href={`tel:${PHONE_PRIMARY_TEL}`}
+                className="block hover:text-white text-slate-300"
+              >
+                {PHONE_PRIMARY}
+              </a>
+              <a
+                href={`tel:${PHONE_SECONDARY_TEL}`}
+                className="block hover:text-white text-slate-300"
+              >
+                {PHONE_SECONDARY}
+              </a>
+              <a
+                href={`mailto:${EMAIL}`}
+                className="block hover:text-white text-slate-300 pt-1 text-[11px] underline font-mono"
+              >
+                {EMAIL}
+              </a>
             </li>
           </ul>
         </div>
-
       </div>
 
       {/* Disclaimers Sub-row with Zarnetic Link */}
       <div className="max-w-7xl mx-auto pt-8 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-semibold text-slate-500">
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-          <p>© {new Date().getFullYear()} Name Change Expert by Home2Home Services. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Name Change Expert by Home2Home Services. All rights
+            reserved.
+          </p>
           <span className="hidden sm:inline text-slate-800">|</span>
           <p className="text-slate-400 font-bold">
             Developed by{" "}
-            <a 
-              href="https://zarnetic.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://zarnetic.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-indigo-400 hover:text-indigo-300 transition-colors underline underline-offset-4 decoration-indigo-500/50 hover:decoration-indigo-400 font-black tracking-wide"
             >
               Zarnetic
@@ -298,7 +343,9 @@ export function SiteFooter() {
           </p>
         </div>
         <p className="text-[10px] text-slate-600 max-w-md text-center sm:text-right leading-relaxed font-medium">
-          Disclaimer: We are a private administrative documentation consultant setup. We are not a direct department of the central printing press and do not modify credentials independently.
+          Disclaimer: We are a private administrative documentation consultant setup. We are not a
+          direct department of the central printing press and do not modify credentials
+          independently.
         </p>
       </div>
     </footer>
@@ -341,7 +388,9 @@ export function CTASection({
     <section className="relative overflow-hidden bg-gradient-brand py-16 text-white sm:py-20">
       <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:px-8 relative z-10">
         <div>
-          <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl tracking-tight">{title}</h2>
+          <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl tracking-tight">
+            {title}
+          </h2>
           <p className="mt-3 max-w-xl text-white/90 text-sm font-medium">{subtitle}</p>
         </div>
         <div className="flex flex-wrap gap-3 font-bold">
@@ -397,7 +446,9 @@ export function PageHero({
         <h1 className="mt-5 text-4xl font-extrabold leading-[1.15] tracking-tight text-navy sm:text-5xl">
           {title}
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">{subtitle}</p>
+        <p className="mx-auto mt-4 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">
+          {subtitle}
+        </p>
       </div>
     </section>
   );

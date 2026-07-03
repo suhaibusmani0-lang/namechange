@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { 
-  CheckCircle2, 
-  FileSignature, 
-  FileText, 
-  IdCard, 
-  Scale, 
-  BookOpen, 
-  Check, 
-  ChevronRight, 
+import {
+  CheckCircle2,
+  FileSignature,
+  FileText,
+  IdCard,
+  Scale,
+  BookOpen,
+  Check,
+  ChevronRight,
   HelpCircle,
-  AlertCircle
+  AlertCircle,
 } from "lucide-react";
 import { CTASection, PageHero } from "@/components/site";
 
@@ -39,84 +39,147 @@ const detailedServices = [
   {
     category: "Main Name Change Services",
     icon: FileSignature,
-    description: "Our primary identity alignment division executes standard procedural structures to modify your name on federal registries through verified government gazette publications.",
+    description:
+      "Our primary identity alignment division executes standard procedural structures to modify your name on federal registries through verified government gazette publications.",
     cards: [
       {
         name: "Central Gazette Notification",
-        context: "The final statutory benchmark for any individual seeking a legally binding identity switch across India. This service handles entire application dossier compilation for presentation before the Department of Publication.",
-        proceedings: ["Compilation of digital text files", "Ministry voucher fee payments", "Official printing index setups"]
+        context:
+          "The final statutory benchmark for any individual seeking a legally binding identity switch across India. This service handles entire application dossier compilation for presentation before the Department of Publication.",
+        proceedings: [
+          "Compilation of digital text files",
+          "Ministry voucher fee payments",
+          "Official printing index setups",
+        ],
       },
       {
         name: "Name Change After Marriage / Divorce",
-        context: "Structured explicitly to assist newly-weds or legally separated individuals who want to modify their hereditary last names, integrate marital identifiers, or completely restore ancestral maiden names.",
-        proceedings: ["Matrimonial status adjustments", "Maiden profile restoration", "Decree mapping structures"]
+        context:
+          "Structured explicitly to assist newly-weds or legally separated individuals who want to modify their hereditary last names, integrate marital identifiers, or completely restore ancestral maiden names.",
+        proceedings: [
+          "Matrimonial status adjustments",
+          "Maiden profile restoration",
+          "Decree mapping structures",
+        ],
       },
       {
         name: "Spelling & Surname Corrections",
-        context: "Fixes extensive textual anomalies, missing middle labels, or deep layout printing errors in previous primary certificates that prevent smooth background verification pipelines.",
-        proceedings: ["Clerical error resolution", "Syllable match verification", "Disparity mapping checks"]
+        context:
+          "Fixes extensive textual anomalies, missing middle labels, or deep layout printing errors in previous primary certificates that prevent smooth background verification pipelines.",
+        proceedings: [
+          "Clerical error resolution",
+          "Syllable match verification",
+          "Disparity mapping checks",
+        ],
       },
       {
         name: "First / Middle / Full Name Change",
-        context: "Complete strategic identity redesign driven by astrological guidance, personal alignment, numerological conversions, or individual choice with absolute legal validity.",
-        proceedings: ["Astrological profile sync", "Complete substitution sets", "Legal credential binding"]
-      }
-    ]
+        context:
+          "Complete strategic identity redesign driven by astrological guidance, personal alignment, numerological conversions, or individual choice with absolute legal validity.",
+        proceedings: [
+          "Astrological profile sync",
+          "Complete substitution sets",
+          "Legal credential binding",
+        ],
+      },
+    ],
   },
   {
     category: "Documentation & Auxiliary Submissions",
     icon: FileText,
-    description: "Comprehensive structural compliance operations to draft flawless evidentiary records, manage media entries, and build absolute verification backups.",
+    description:
+      "Comprehensive structural compliance operations to draft flawless evidentiary records, manage media entries, and build absolute verification backups.",
     cards: [
       {
         name: "Affidavit Preparation",
-        context: "Drafting foundational court declarations on non-judicial stamp papers of recommended denominations, specifying precise identity transitions validated by certified executive magistrates.",
-        proceedings: ["Judicial statement styling", "Stamp paper procurement", "Notary verification routing"]
+        context:
+          "Drafting foundational court declarations on non-judicial stamp papers of recommended denominations, specifying precise identity transitions validated by certified executive magistrates.",
+        proceedings: [
+          "Judicial statement styling",
+          "Stamp paper procurement",
+          "Notary verification routing",
+        ],
       },
       {
         name: "Newspaper Advertisements",
-        context: "Fulfilling public disclosure laws by running standardized classified notices in two prominent news publications—one national English daily and one regional vernacular daily.",
-        proceedings: ["Classified copy composition", "Media house scheduling", "Clipping sheet compilation"]
+        context:
+          "Fulfilling public disclosure laws by running standardized classified notices in two prominent news publications—one national English daily and one regional vernacular daily.",
+        proceedings: [
+          "Classified copy composition",
+          "Media house scheduling",
+          "Clipping sheet compilation",
+        ],
       },
       {
         name: "Gazette Application Dossier Preparation",
-        context: "Bundling complex operational forms, signed specimen declarations, identification cross-checks, and formatted diagnostic records into an absolute non-rejection system folder.",
-        proceedings: ["Proforma indexing files", "Dossier bundle generation", "Defect screening filters"]
+        context:
+          "Bundling complex operational forms, signed specimen declarations, identification cross-checks, and formatted diagnostic records into an absolute non-rejection system folder.",
+        proceedings: [
+          "Proforma indexing files",
+          "Dossier bundle generation",
+          "Defect screening filters",
+        ],
       },
       {
         name: "Digital Signature & Form Submission",
-        context: "Providing end-to-end support for digital record formatting and processing your identity files directly through the central ministry counters in New Delhi.",
-        proceedings: ["Electronic signature loops", "Counter delivery tracking", "Departmental liaison audits"]
-      }
-    ]
+        context:
+          "Providing end-to-end support for digital record formatting and processing your identity files directly through the central ministry counters in New Delhi.",
+        proceedings: [
+          "Electronic signature loops",
+          "Counter delivery tracking",
+          "Departmental liaison audits",
+        ],
+      },
+    ],
   },
   {
     category: "Government Document Support Systems",
     icon: IdCard,
-    description: "Post-gazette records alignment pathways to update your freshly published official identity layout smoothly across primary state and national registries.",
+    description:
+      "Post-gazette records alignment pathways to update your freshly published official identity layout smoothly across primary state and national registries.",
     cards: [
       {
         name: "Aadhaar Record Mapping Support",
-        context: "Guiding the systematic update of identification parameters in core residential database cards to completely align with the newly published Central Gazette notification decree.",
-        proceedings: ["Demographic database check", "Biometric portal validation", "Discrepancy mitigation sets"]
+        context:
+          "Guiding the systematic update of identification parameters in core residential database cards to completely align with the newly published Central Gazette notification decree.",
+        proceedings: [
+          "Demographic database check",
+          "Biometric portal validation",
+          "Discrepancy mitigation sets",
+        ],
       },
       {
         name: "PAN Card Data Update",
-        context: "Synchronizing tax profiling structures with federal finance department servers to reflect the corrected legal name without affecting historical transaction records.",
-        proceedings: ["Taxpayer record matching", "Digital portal validation", "Alphanumeric identity mapping"]
+        context:
+          "Synchronizing tax profiling structures with federal finance department servers to reflect the corrected legal name without affecting historical transaction records.",
+        proceedings: [
+          "Taxpayer record matching",
+          "Digital portal validation",
+          "Alphanumeric identity mapping",
+        ],
       },
       {
         name: "Passport Name Change Operations",
-        context: "Comprehensive navigation through immigration compliance parameters to securely acquire re-issued international passports containing your modified identity data.",
-        proceedings: ["Consular form structuring", "Annexure layout adjustments", "Appointment processing logs"]
+        context:
+          "Comprehensive navigation through immigration compliance parameters to securely acquire re-issued international passports containing your modified identity data.",
+        proceedings: [
+          "Consular form structuring",
+          "Annexure layout adjustments",
+          "Appointment processing logs",
+        ],
       },
       {
         name: "Voter ID & Banking Record Updates",
-        context: "Comprehensive verification pathways to transition electoral profiles and complex financial assets, savings instruments, or stock holdings under the updated legal name.",
-        proceedings: ["Electoral rolls modification", "KYC database adjustment", "Asset validation matching"]
-      }
-    ]
-  }
+        context:
+          "Comprehensive verification pathways to transition electoral profiles and complex financial assets, savings instruments, or stock holdings under the updated legal name.",
+        proceedings: [
+          "Electoral rolls modification",
+          "KYC database adjustment",
+          "Asset validation matching",
+        ],
+      },
+    ],
+  },
 ];
 
 function ServicesPage() {
@@ -127,7 +190,8 @@ function ServicesPage() {
         eyebrow="Our Specialized Legal Portfolios"
         title={
           <>
-            Complete Name Change &amp; <span className="text-gradient-brand">Documentation</span> Services
+            Complete Name Change &amp; <span className="text-gradient-brand">Documentation</span>{" "}
+            Services
           </>
         }
         subtitle="Hassle-free, legally compliant administrative blueprints. Every phase—from legal drafting to Central Gazette publication—is managed by senior document specialists."
@@ -140,7 +204,12 @@ function ServicesPage() {
             Why Standardized Legal Documentation Matters
           </h2>
           <p className="mt-4 text-sm text-slate-600 leading-relaxed font-medium">
-            In any official state verification, a minor mismatch in spelling, surname structural patterns, or parental initials can cause unexpected rejections during passport tracking, immigration clearings, employment checks, or legacy wealth distribution. Our firm treats your documentation as a vital asset. By following strict federal publication laws, we ensure that your identity profiles are built cleanly, robustly, and with full legal compliance.
+            In any official state verification, a minor mismatch in spelling, surname structural
+            patterns, or parental initials can cause unexpected rejections during passport tracking,
+            immigration clearings, employment checks, or legacy wealth distribution. Our firm treats
+            your documentation as a vital asset. By following strict federal publication laws, we
+            ensure that your identity profiles are built cleanly, robustly, and with full legal
+            compliance.
           </p>
         </div>
       </section>
@@ -159,7 +228,9 @@ function ServicesPage() {
                   </span>
                 </div>
                 <h2 className="text-3xl font-black text-navy tracking-tight">{group.category}</h2>
-                <p className="text-sm text-muted-foreground mt-2 font-medium">{group.description}</p>
+                <p className="text-sm text-muted-foreground mt-2 font-medium">
+                  {group.description}
+                </p>
               </div>
               <div className="hidden lg:block text-xs font-bold text-slate-400">
                 Statutory Regulatory Division
@@ -169,7 +240,7 @@ function ServicesPage() {
             {/* Individual Cards Grid */}
             <div className="grid gap-8 md:grid-cols-2">
               {group.cards.map((card, cardIndex) => (
-                <div 
+                <div
                   key={cardIndex}
                   className="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
                 >
@@ -190,7 +261,7 @@ function ServicesPage() {
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {card.proceedings.map((proc, procIdx) => (
-                        <span 
+                        <span
                           key={procIdx}
                           className="bg-slate-100 text-slate-700 text-[11px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1.5"
                         >
@@ -218,22 +289,40 @@ function ServicesPage() {
               Understanding the Rigorous Central Dossier Scrutiny
             </h2>
             <p className="text-sm text-slate-300 mt-4 leading-relaxed font-medium">
-              Every file lodged at the Department of Publication undergoes rigorous screening checks by verification desks. If your affidavit language lacks specific regulatory phrases, if the public ads run in unauthorized newspapers, or if the digital signature code structure contains errors, the application is promptly rejected. Our processing platform uses pre-screened compliance patterns to ensure that your file meets all requirements right from day one.
+              Every file lodged at the Department of Publication undergoes rigorous screening checks
+              by verification desks. If your affidavit language lacks specific regulatory phrases,
+              if the public ads run in unauthorized newspapers, or if the digital signature code
+              structure contains errors, the application is promptly rejected. Our processing
+              platform uses pre-screened compliance patterns to ensure that your file meets all
+              requirements right from day one.
             </p>
             <div className="mt-6 flex items-start gap-3 bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
               <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
               <p className="text-xs text-slate-300 leading-relaxed font-semibold">
-                Important Notice: We run deep compliance filtering on all documents to maintain full security and completely eliminate structural errors before submission.
+                Important Notice: We run deep compliance filtering on all documents to maintain full
+                security and completely eliminate structural errors before submission.
               </p>
             </div>
           </div>
           <div className="grid gap-4">
             {[
-              { t: "Judicial Format Verification", d: "Aligning stamp duties and state laws with standard federal templates." },
-              { t: "Media Channel Validations", d: "Selecting licensed national and regional newspapers to ensure public notices are fully valid." },
-              { t: "Electronic Profile Checks", d: "Formatting soft copy data into correct digital formats to align cleanly with ministerial indexing engines." }
+              {
+                t: "Judicial Format Verification",
+                d: "Aligning stamp duties and state laws with standard federal templates.",
+              },
+              {
+                t: "Media Channel Validations",
+                d: "Selecting licensed national and regional newspapers to ensure public notices are fully valid.",
+              },
+              {
+                t: "Electronic Profile Checks",
+                d: "Formatting soft copy data into correct digital formats to align cleanly with ministerial indexing engines.",
+              },
             ].map((item, index) => (
-              <div key={index} className="bg-white/10 border border-white/10 p-5 rounded-xl backdrop-blur-sm hover:bg-white/15 transition-all">
+              <div
+                key={index}
+                className="bg-white/10 border border-white/10 p-5 rounded-xl backdrop-blur-sm hover:bg-white/15 transition-all"
+              >
                 <h4 className="font-bold text-base text-white flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0" /> {item.t}
                 </h4>
@@ -259,18 +348,21 @@ function ServicesPage() {
             {[
               {
                 q: "Can I manage multiple name modifications within a single application dossier?",
-                a: "Yes. In cases where you need to combine typo updates, update a surname after marriage, or align middle strings across certificates, multiple changes can be bundled into a comprehensive application dossier to streamline the process."
+                a: "Yes. In cases where you need to combine typo updates, update a surname after marriage, or align middle strings across certificates, multiple changes can be bundled into a comprehensive application dossier to streamline the process.",
               },
               {
                 q: "What newspaper networks are selected for the mandatory public announcements?",
-                a: "Our media division works exclusively with major national publications and widely circulated local daily newspapers that meet the verification standards set by the Central Gazette Department."
+                a: "Our media division works exclusively with major national publications and widely circulated local daily newspapers that meet the verification standards set by the Central Gazette Department.",
               },
               {
                 q: "Is an explicit offline physical appearance necessary at the Delhi offices?",
-                a: "No. Our centralized desk handles the entire local counter process, administrative follow-ups, and document filing workflows, meaning your physical presence is not required at the government counters."
-              }
+                a: "No. Our centralized desk handles the entire local counter process, administrative follow-ups, and document filing workflows, meaning your physical presence is not required at the government counters.",
+              },
             ].map((faq, i) => (
-              <div key={i} className="border border-slate-200 rounded-xl p-5 hover:border-primary/40 transition-all bg-slate-50/50">
+              <div
+                key={i}
+                className="border border-slate-200 rounded-xl p-5 hover:border-primary/40 transition-all bg-slate-50/50"
+              >
                 <h4 className="text-base font-bold text-navy flex items-start gap-2.5">
                   <HelpCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" /> {faq.q}
                 </h4>

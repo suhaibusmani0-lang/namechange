@@ -1,0 +1,5 @@
+node_modules/
+server/
+dist/
+.vite/
+routeTree.gen.ts

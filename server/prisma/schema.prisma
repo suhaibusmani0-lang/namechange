@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String
+  service   String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model BlogPost {
+  id          String   @id @default(uuid())
+  title       String
+  excerpt     String
+  cover_image String?  // Question mark (?) ka matlab hai ki photo dalna optional hai
+  author      String   @default("Admin Team") // Agar koi naam na dale toh default ye jayega
+  slug        String   @unique
+  publishedAt DateTime @default(now())
+}
