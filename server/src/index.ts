@@ -5,7 +5,6 @@ import { PrismaClient } from '@prisma/client';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
-
 dotenv.config();
 
 const app = express();
@@ -42,9 +41,11 @@ const upload = multer({ storage: storage });
 // MIDDLEWARES
 // ==========================================
 
+// ✅ FIX: Cloudflare aur baki sabhi live websites ko allow karne ke liye CORS update kiya
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:4173'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: "*", 
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 // Serve uploaded images statically so frontend can see them
