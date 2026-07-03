@@ -188,7 +188,7 @@ function LeadsManager() {
   const fetchLeads = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/contact");
+      const res = await fetch("https://namechange-hocg.onrender.com/api/contact");
       const data = await res.json();
       setLeads(data);
     } catch (error) {
@@ -295,7 +295,7 @@ function BlogManager() {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/blogs");
+      const res = await fetch("https://namechange-hocg.onrender.com/api/blogs");
       const data = await res.json();
       setBlogs(Array.isArray(data) ? data : []);
     } catch (error) {
@@ -334,7 +334,7 @@ function BlogManager() {
     if (selectedImage) formPayload.append("cover_image", selectedImage);
 
     try {
-      const url = view === "edit" ? `http://localhost:5000/api/blogs/${editingBlogId}` : "http://localhost:5000/api/blogs";
+      const url = view === "edit" ? `https://namechange-hocg.onrender.com/api/blogs/${editingBlogId}` : "https://namechange-hocg.onrender.com/api/blogs";
       const method = view === "edit" ? "PUT" : "POST";
 
       const response = await fetch(url, { method, body: formPayload });
@@ -356,7 +356,7 @@ function BlogManager() {
   async function handleDelete(id: string) {
     if(!window.confirm("Are you sure you want to permanently delete this article?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`, { method: "DELETE" });
+      const res = await fetch(`https://namechange-hocg.onrender.com/api/blogs/${id}`, { method: "DELETE" });
       if(res.ok) fetchBlogs();
     } catch (error) {
       alert("Failed to delete.");

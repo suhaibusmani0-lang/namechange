@@ -100,7 +100,7 @@ app.post('/api/blogs', upload.single('cover_image'), async (req: Request, res: R
     // Generate image URL if file was uploaded
     let imageUrl = '';
     if (req.file) {
-      imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+      imageUrl = `https://namechange-hocg.onrender.com/uploads/${req.file.filename}`;
     }
 
     const newBlog = await prisma.blogPost.create({
@@ -151,7 +151,7 @@ app.put('/api/blogs/:id', upload.single('cover_image'), async (req: Request, res
     // Agar nayi photo aayi hai toh wo use karein, warna purani wali hi rehne dein
     let imageUrl = existingBlog.cover_image;
     if (req.file) {
-      imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+      imageUrl = `https://namechange-hocg.onrender.com/uploads/${req.file.filename}`;
     }
 
     const updatedBlog = await prisma.blogPost.update({

@@ -17,7 +17,7 @@ function SingleBlogPage() {
     const fetchSpecificBlog = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:5000/api/blogs");
+        const res = await fetch("https://namechange-hocg.onrender.com/api/blogs");
         const data = await res.json();
         const found = data.find((b: any) => b.slug === slug);
         setBlog(found);
