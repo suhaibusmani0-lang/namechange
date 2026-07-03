@@ -322,7 +322,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Disclaimers Sub-row with Zarnetic Link */}
+      {/* Disclaimers Sub-row with Zarnetic Link & Admin Access */}
       <div className="max-w-7xl mx-auto pt-8 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-semibold text-slate-500">
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
           <p>
@@ -341,6 +341,14 @@ export function SiteFooter() {
               Zarnetic
             </a>
           </p>
+          <span className="hidden sm:inline text-slate-800">|</span>
+          <Link 
+            to="/admin" 
+            className="flex items-center gap-1 text-slate-600 hover:text-indigo-400 transition-colors"
+            title="Secure Admin Portal"
+          >
+            <ShieldCheck className="w-3.5 h-3.5" /> Admin Login
+          </Link>
         </div>
         <p className="text-[10px] text-slate-600 max-w-md text-center sm:text-right leading-relaxed font-medium">
           Disclaimer: We are a private administrative documentation consultant setup. We are not a
