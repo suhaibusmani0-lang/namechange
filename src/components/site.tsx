@@ -57,7 +57,7 @@ function Logo() {
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200">
+     <header className="relative z-[9999] w-full bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200">
       {/* Top Discount Strip */}
       <div className="bg-indigo-600 text-white text-xs sm:text-sm py-2.5 px-4 text-center">
         <p className="flex items-center justify-center gap-2 font-bold tracking-wide">
