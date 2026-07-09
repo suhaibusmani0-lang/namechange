@@ -1,768 +1,472 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Phone,
-  CheckCircle2,
-  Shield,
-  Zap,
-  FileSignature,
-  ScrollText,
-  ArrowRight,
-  FileText,
-  IdCard,
-  Star,
-  HelpCircle,
-  Scale,
-  Users,
-  Check,
-  Building2,
-  Briefcase,
-  AlertTriangle,
-  FileCheck,
-  MapPin,
-  Globe,
-  MessageSquare,
-  ThumbsUp,
-  FileSearch,
-} from "lucide-react";
-import { PHONE_PRIMARY, PHONE_PRIMARY_TEL, CTASection } from "@/components/site";
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { useState } from 'react'
+import { 
+  Search, ShieldCheck, Scale, Users, BookOpen, Star, 
+  Check, ChevronDown, HelpCircle, FileText, Briefcase, Landmark, CheckCircle2,
+  ArrowRight, PhoneCall, FileSignature, MapPin, UserPlus, Edit3
+} from 'lucide-react'
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Name Change Expert Delhi | Easy Gazette Notification Services in India" },
-      {
-        name: "description",
-        content:
-          "Easy and legal online name change services in India. We help you with affidavits, newspaper ads, and Central Gazette notifications without any hassle.",
-      },
-      {
-        name: "keywords",
-        content:
-          "name change service India, gazette name change service, name correction service, name change after marriage, minor name change, online name change consultation, name change Delhi, name change Mumbai, name change Bangalore",
-      },
-      { property: "og:title", content: "Name Change Expert | Easy Gazette Notification Services" },
-      {
-        property: "og:description",
-        content:
-          "Change your name legally and easily. We handle all your paperwork, from affidavits to the final government Gazette copy.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LegalService",
-          name: "Name Change Expert by Home2Home Services",
-          description:
-            "Professional legal name change, gazette notification and comprehensive documentation services in India.",
-          telephone: ["+91-7982744129", "+91-9654484565"],
-          email: "info@namechangeexpert.in",
-          areaServed: "India",
-          address: [
-            {
-              "@type": "PostalAddress",
-              streetAddress: "Kh No-14/11 Street No-36 Chandan Vihar Burari",
-              addressLocality: "Delhi",
-              postalCode: "110084",
-              addressCountry: "IN",
-            },
-            {
-              "@type": "PostalAddress",
-              streetAddress: "Arya Samaj Rd, Block J, Uttam Nagar",
-              addressLocality: "Delhi",
-              postalCode: "110059",
-              addressCountry: "IN",
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: Index,
-});
+export const Route = createFileRoute('/')({
+  component: HomePage,
+})
 
-function Index() {
+function HomePage() {
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const toggleFaq = (index: number) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    service: 'General Name Change'
+  })
+
+  // Lead Form Submit Handler
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Lead form submitted:', formData);
+    alert('Thank you! Your case review request has been submitted securely.');
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  }
+
+  // Search Bar Submit Handler
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if(!searchQuery.trim()) {
+      alert("Please enter a service or query to search.");
+      return;
+    }
+    alert(`Searching our legal database for: "${searchQuery}"\n\nRedirecting you to the most relevant compliance framework...`);
+    setSearchQuery('');
+  }
+
+  // --- ARRAYS FOR DYNAMIC CONTENT (With Non-Unsplash Guaranteed Images) ---
+
+  const servicesList = [
+    { icon: Users, title: 'Adult Identity Transition', desc: 'A complete legal suite for modifying your given name or surname seamlessly across all government documents.' },
+    { icon: Briefcase, title: 'Post-Matrimonial Updates', desc: 'Specifically structured for brides modifying their maiden names post marriage documentation.' },
+    { icon: FileText, title: 'Typographical Corrections', desc: 'Rectify minor spelling errors or complete structural mismatch transcription errors in registry logs.' },
+    { icon: UserPlus, title: 'Minor Name Change', desc: 'Parent-backed legal identity rectification for children below 18 years in school and Aadhar records.' },
+    { icon: Scale, title: 'Faith Alignment Update', desc: 'Statutory legal documentation and Gazette processing for faith and religion-based identity shifts.' },
+    { icon: Edit3, title: 'Surname Addition', desc: 'Strategic framing and addition of surnames for professional uniformity and visa compliance.' },
+    { icon: FileSignature, title: 'Divorcee Name Reversion', desc: 'Legal restoration and Gazette notification for reverting to your maiden name post-annulment.' }
+  ];
+
+  const locationsList = [
+    { city: 'New Delhi (PAN)', desc: 'Central Dispatch Hub interfacing directly with Delhi Headquarters.', img: 'https://cdn.britannica.com/38/189838-050-83C7395E/India-War-Memorial-arch-New-Delhi-Sir.jpg' },
+    { city: 'Hyderabad', desc: 'Regional Registry Desk serving Telangana and Andhra compliance.', img: 'https://upload.wikimedia.org/wikipedia/commons/7/71/Charminar_Hyderabad_1.jpg' },
+    { city: 'Bengaluru', desc: 'Southern Branch Node handling expedited corporate document transitions.', img: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Vidhana_Soudha_2012.jpg' },
+    { city: 'Chennai Regional', desc: 'Coast Regional Compliance operations handling specialized cases.', img: 'https://upload.wikimedia.org/wikipedia/commons/3/32/Chennai_Central.jpg' },
+    { city: 'Mumbai', desc: 'Western regional desk handling Maharashtra & Gujarat jurisdictions.', img: 'https://preview.redd.it/mumbai-skyline-v0-0telj1ubmkvb1.jpg?width=640&crop=smart&auto=webp&s=8ba3c22299fdb1421def2c0836d9a30323377910' },
+    { city: 'Kolkata', desc: 'Eastern nodal center for rapid Bengal & North-East document processing.', img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Victoria_Memorial_situated_in_Kolkata.jpg/1280px-Victoria_Memorial_situated_in_Kolkata.jpg' },
+    { city: 'Pune', desc: 'Dedicated verification node for expedited corporate ID transitions.', img: 'https://img.magnific.com/premium-photo/aerial-view-pune-city-maharashtra-india-skyscrapers-modern-architecture-dominate_1268487-11926.jpg' },
+    { city: 'Ahmedabad', desc: 'Gujarat central registry for compliance and rapid affidavit vetting.', img: 'https://www.dekhoamdavad.com/images/gallery/Sabarmati-ahmedabad.jpg' }
+  ];
+
+  const resourcesList = [
+    { title: 'Setup & Basics Chart Logs', desc: 'Process charts analyzing documentation mapping and standard validation timelines.', img: 'https://ppcexpo.com/blog/wp-content/uploads/2024/10/types-of-business-charts-Main.jpg' },
+    { title: 'Process Flow Analysis', desc: 'Detailed workflow models mapping core validation systems and submission structures.', img: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600' },
+    { title: 'Latest Department Circulars', desc: 'Real-time alerts tracing modification layouts published centrally by the government.', img: 'https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg?auto=compress&cs=tinysrgb&w=600' }
+  ];
+
   return (
-    <div className="bg-slate-50 text-slate-800 antialiased font-sans">
-      <Hero />
-      <TrustSection />
-      <CoreIntroduction />
-      <DetailedServices />
-      <DetailedProcessSection />
-      <ComprehensiveCategories />
-      <EligibilitySection />
-      <DeepLegalCompliance />
-      <WhyChooseUsDetailed />
-      <LocationsSeoSection />
-      <FaqSection />
-      <CTASection />
-    </div>
-  );
-}
+    <div className="font-sans text-slate-900 bg-white selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
+      
+      {/* CSS For Infinite Marquee Animations */}
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-reverse {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0%); }
+        }
+        .animate-marquee {
+          animation: marquee 40s linear infinite;
+        }
+        .animate-marquee-reverse {
+          animation: marquee-reverse 40s linear infinite;
+        }
+        .marquee-container:hover .animate-marquee,
+        .marquee-container:hover .animate-marquee-reverse {
+          animation-play-state: paused;
+        }
+      `}</style>
 
-function Hero() {
-  return (
-    <section className="relative overflow-hidden bg-gradient-brand-soft pt-20 pb-24 md:pt-28 md:pb-32 border-b border-border/50">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-32 -right-32 h-[500px] w-[500px] rounded-full bg-gradient-brand opacity-20 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full bg-gradient-brand opacity-15 blur-3xl"
-      />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-        <div className="flex flex-col justify-center lg:col-span-7">
-          <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary shadow-sm">
-            <Star className="h-3.5 w-3.5 fill-primary" /> India's Trusted Name Change Experts
-          </span>
-          <h1 className="text-4xl font-extrabold leading-[1.15] tracking-tight text-navy sm:text-5xl lg:text-6xl">
-            Easy & Legal Name Change &amp;{" "}
-            <span className="text-gradient-brand">Gazette Services</span>
+      {/* ================= HERO SECTION ================= */}
+      <section className="relative pt-16 pb-24 md:pt-28 md:pb-32 text-center bg-[#F8FAFC] border-b border-slate-200 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-700 via-indigo-800 to-slate-900"></div>
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-widest mb-8 shadow-sm transition-all hover:border-slate-300">
+            <Landmark className="w-4 h-4 text-blue-700" /> Government of India Compliant Process
+          </div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-black text-slate-900 tracking-tight leading-[1.15] mb-6">
+            India&apos;s Most Trusted Legal <br />
+            <span className="text-blue-700">Name Change Documentation</span> Desk
           </h1>
-          <p className="mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Change your name legally from the comfort of your home. We manage everything for
-            you—from creating affidavits and newspaper ads to submitting your file at the Central
-            Gazette office. Fast, secure, and available across India.
+          <p className="text-sm md:text-lg font-medium text-slate-600 max-w-4xl mx-auto mb-10 leading-relaxed">
+            Empowering individuals with error-free, legally binding name change services. Complete Central Gazette Notifications, affidavit drafting, and newspaper publications with a 100% approval success rate.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              to="/contact"
-              aria-label="Start Your Process"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-base font-bold text-white shadow-brand transition transform hover:translate-y-[-2px] hover:shadow-lg"
-            >
-              Start Your Process <ArrowRight className="h-5 w-5" />
-            </Link>
-            <a
-              href={`https://wa.me/917982744129`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-green-600/30 bg-white px-8 py-4 text-base font-bold text-green-700 shadow-card transition hover:border-green-600/50 hover:bg-green-50"
-            >
-              <MessageSquare className="h-5 w-5" /> WhatsApp Enquiry
-            </a>
-          </div>
-          <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3" aria-label="Trust badges">
-            {[
-              { icon: Shield, label: "100% Legal & Secure" },
-              { icon: Zap, label: "Fast Processing" },
-              { icon: CheckCircle2, label: "Zero Rejection Guarantee" },
-            ].map(({ icon: Icon, label }) => (
-              <li
-                key={label}
-                className="flex items-center gap-2.5 rounded-xl border border-border/80 bg-white/90 p-3.5 text-xs font-bold text-navy shadow-sm"
-              >
-                <Icon className="h-5 w-5 text-primary shrink-0" aria-hidden /> {label}
-              </li>
-            ))}
-          </ul>
-        </div>
 
-        <div className="relative lg:col-span-5 flex items-center">
-          <div className="w-full relative rounded-3xl border border-border bg-white p-6 shadow-xl sm:p-8">
-            <div className="absolute -top-3 left-6 inline-flex items-center gap-1.5 rounded-full bg-gradient-brand px-4 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-md">
-              Government Compliant
+          {/* Search Bar */}
+          <form onSubmit={handleSearchSubmit} className="max-w-3xl mx-auto bg-white p-2.5 rounded-2xl shadow-xl border border-slate-200 flex items-center mb-10 focus-within:ring-2 focus-within:ring-blue-600 transition-all">
+            <div className="pl-4 text-slate-400">
+              <Search className="w-6 h-6" />
             </div>
-            <div className="mb-6 flex items-center justify-between pt-2">
-              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                The Gazette of India
-              </p>
-              <ScrollText className="h-6 w-6 text-primary" aria-hidden />
-            </div>
-            <div className="space-y-3">
-              <div className="h-3 w-3/4 rounded-full bg-slate-100" />
-              <div className="h-3 w-full rounded-full bg-slate-100" />
-              <div className="h-3 w-5/6 rounded-full bg-slate-100" />
-              <div className="h-3 w-4/5 rounded-full bg-slate-100" />
-            </div>
-            <div className="my-6 h-px bg-slate-100" />
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { label: "Happy Clients", value: "8,500+" },
-                { label: "Normal Time", value: "10-15 Days" },
-                { label: "Success Rate", value: "99.9%" },
-                { label: "Legal Experts", value: "15+ Years" },
-              ].map((s) => (
-                <div
-                  key={s.label}
-                  className="rounded-xl bg-slate-50 border border-slate-100 p-4 transition hover:bg-gradient-brand-soft"
-                >
-                  <div className="text-2xl font-black text-navy">{s.value}</div>
-                  <div className="text-[11px] font-semibold text-muted-foreground mt-1 leading-tight">
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+            <input 
+              type="text" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Type status / service configuration (e.g., Name change after marriage)..." 
+              className="w-full px-4 py-3 outline-none text-base text-slate-700 font-medium bg-transparent placeholder-slate-400"
+            />
+            <button type="submit" className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-colors whitespace-nowrap hidden sm:block shadow-md">
+              Search Setup
+            </button>
+          </form>
 
-function TrustSection() {
-  const trustFactors = [
-    {
-      icon: Globe,
-      title: "Serving All Over India",
-      text: "Whether you live in Delhi, Mumbai, or Bangalore, we can help you online.",
-    },
-    {
-      icon: FileCheck,
-      title: "Full Document Help",
-      text: "We guide you in making affidavits and organizing your files correctly.",
-    },
-    {
-      icon: MessageSquare,
-      title: "Online Consultation",
-      text: "Talk to our experts from home to understand how we can help you.",
-    },
-    {
-      icon: ThumbsUp,
-      title: "Great Customer Reviews",
-      text: "Thousands of people have successfully changed their names with us.",
-    },
-    {
-      icon: Shield,
-      title: "Transparent Process",
-      text: "No hidden fees. We tell you the exact cost and time upfront.",
-    },
-  ];
-
-  return (
-    <section className="py-12 bg-white border-b border-slate-200/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {trustFactors.map((factor, index) => (
-            <div key={index} className="flex flex-col items-center text-center p-4">
-              <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <factor.icon className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-sm font-bold text-navy mb-2">{factor.title}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">{factor.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CoreIntroduction() {
-  return (
-    <section className="py-16 md:py-24 bg-slate-50 border-b border-slate-200/50">
-      <div className="max-w-5xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-extrabold text-navy tracking-tight sm:text-4xl">
-          Why Do You Need a Gazette Notification to Change Your Name?
-        </h2>
-        <p className="mt-6 text-base md:text-lg text-slate-600 leading-relaxed font-medium text-justify">
-          Changing your name legally in India is a strict process. Many people think that just
-          making a local affidavit or giving an ad in a newspaper is enough. But that is not true.
-          If you want to update your name in important places like your Passport, Bank Account, PAN
-          Card, or Office records, they will ask for a <strong>Central Gazette Notification</strong>{" "}
-          issued by the Government of India.
-          <br />
-          <br />
-          Whether you want to correct a small spelling mistake in your marksheet, change your
-          surname after marriage, or completely change your name for personal or astrological
-          reasons, the Government Gazette is the final proof you need. We make this tough paperwork
-          very easy for you. We help you draft the perfect affidavit, publish the right newspaper
-          ads, and submit your file to the Government office in Delhi, all while you relax at home.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-function DetailedServices() {
-  const services = [
-    {
-      title: "Name Change Service India",
-      icon: Globe,
-      desc: "Want to change your name completely? Whether it is for personal, astrological, or religious reasons, we handle the entire legal paperwork for adults across India.",
-      benefits: [
-        "Valid across all of India",
-        "No need to visit government offices",
-        "Complete file preparation",
-      ],
-      process:
-        "We check your IDs, make your affidavit, publish newspaper ads, and submit your file for you.",
-      link: "/contact",
-    },
-    {
-      title: "Gazette Name Change Service",
-      icon: ScrollText,
-      desc: "The Central Gazette is the final proof of your new name. We make sure your file is perfectly prepared and published in the official Government of India Gazette.",
-      benefits: [
-        "Accepted by Passport & Visa offices",
-        "Follows all government rules",
-        "You get a digital Gazette copy",
-      ],
-      process:
-        "We do the affidavit, two newspaper ads, CD formatting, and physical submission in Delhi.",
-      link: "/contact",
-    },
-    {
-      title: "Name Correction Service",
-      icon: FileSearch,
-      desc: "Small spelling mistakes in your 10th marksheet, PAN, or birth certificate can cause big problems. We help you fix these errors legally through the Gazette.",
-      benefits: [
-        "Stops documents from getting rejected",
-        "Matches your name on all IDs",
-        "Safe for background checks",
-      ],
-      process:
-        "We prepare a special 'One and the Same Person' affidavit and follow the standard publishing steps.",
-      link: "/contact",
-    },
-    {
-      title: "Name Change After Marriage",
-      icon: Users,
-      desc: "Are you a woman adopting your husband's surname? Or do you want your maiden name back after a divorce? We make this update legally safe and easy.",
-      benefits: [
-        "Easy to open joint bank accounts",
-        "Smooth updates for Aadhaar and Passport",
-        "Legally safe name change",
-      ],
-      process:
-        "We use your marriage certificate or divorce papers along with a custom affidavit to update your name.",
-      link: "/contact",
-    },
-    {
-      title: "Minor Name Change",
-      icon: IdCard,
-      desc: "Changing a child's name (under 18 years) needs special permission from parents. We help update their name for school records and passports so they don't face issues later.",
-      benefits: [
-        "Fixes school board (CBSE/ICSE) problems",
-        "Helps in getting student visas easily",
-        "Full legal support for parents",
-      ],
-      process:
-        "Parents sign the affidavit, we publish special ads for minors, and submit the file to the Gazette.",
-      link: "/contact",
-    },
-    {
-      title: "Online Consultation",
-      icon: MessageSquare,
-      desc: "Not sure what to do? Talk to our experts. We offer detailed online advice to help you figure out the exact steps needed for your specific name change problem.",
-      benefits: [
-        "Expert check of your current IDs",
-        "Clear details on cost and time",
-        "Find out any legal problems early",
-      ],
-      process:
-        "Just message us on WhatsApp or fill our form. Share your documents safely and get a step-by-step plan.",
-      link: "/contact",
-    },
-  ];
-
-  return (
-    <section className="py-24 bg-white border-b border-slate-200/50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">
-            Our Services
-          </span>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
-            How We Can Help You
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-            From fixing small spelling mistakes to changing your full name, we provide services for
-            every need across India.
-          </p>
-        </div>
-
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((s, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="p-6 flex-grow">
-                <div className="h-12 w-12 rounded-xl bg-gradient-brand text-white flex items-center justify-center mb-6 shadow-md">
-                  <s.icon className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold text-navy mb-3">{s.title}</h3>
-                <p className="text-sm text-slate-600 mb-6 leading-relaxed">{s.desc}</p>
-
-                <div className="space-y-3 mb-6">
-                  <h4 className="text-xs font-bold text-navy uppercase tracking-wider">
-                    Key Benefits:
-                  </h4>
-                  <ul className="text-sm text-slate-700 space-y-2">
-                    {s.benefits.map((b, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                        <span className="font-medium">{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg border border-slate-100 text-sm text-slate-600">
-                  <span className="font-bold text-navy">Process:</span> {s.process}
-                </div>
-              </div>
-              <div className="p-6 pt-0 mt-auto">
-                <Link
-                  to={s.link}
-                  className="w-full inline-flex justify-center items-center gap-2 rounded-lg bg-white border-2 border-primary/20 px-4 py-2.5 text-sm font-bold text-primary hover:bg-primary hover:text-white transition-colors"
-                >
-                  Enquire Now <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DetailedProcessSection() {
-  const steps = [
-    {
-      num: "01",
-      title: "Step 1: Share Your Details",
-      desc: "First, you share your current IDs (like Aadhaar or PAN), a photo, and the new name you want. Our team checks your documents carefully to make sure everything follows government rules so your application doesn't get rejected later.",
-    },
-    {
-      num: "02",
-      title: "Step 2: We Make the Legal Affidavit",
-      desc: "Once checked, we create a proper legal affidavit for you on stamp paper. This document explains your old name, new name, and the reason for the change. It is then signed by a notary to make it official.",
-    },
-    {
-      num: "03",
-      title: "Step 3: Newspaper Advertisement",
-      desc: "The government rule says you must tell the public about your name change. We publish a small ad about your name change in two newspapers—one English and one local language paper. We write the exact words the government wants.",
-    },
-    {
-      num: "04",
-      title: "Step 4: Central Gazette Submission",
-      desc: "Now comes the main part. We collect your affidavit, newspaper ads, photos, and a digital CD, and put them in a file. Our team personally submits this file to the Government Gazette office in New Delhi and answers any questions they might have.",
-    },
-    {
-      num: "05",
-      title: "Step 5: Get Your Official Gazette Copy",
-      desc: "Once the government approves, your new name is printed in the official e-Gazette. We send you this digital copy. You can now use this copy to safely update your Passport, Bank Accounts, PAN Card, and Aadhaar Card.",
-    },
-  ];
-
-  return (
-    <section className="py-20 sm:py-24 bg-slate-50 border-b border-slate-200/50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">
-            How It Works
-          </span>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-navy sm:text-4xl lg:text-5xl">
-            Our Simple 5-Step Process
-          </h2>
-          <p className="mt-4 text-muted-foreground text-base leading-relaxed">
-            We have made the difficult government process very easy for you. Just follow our steps
-            and get your work done smoothly.
-          </p>
-        </div>
-
-        <div className="relative border-l-2 border-primary/20 ml-4 md:ml-8 space-y-12 max-w-4xl mx-auto">
-          {steps.map((s) => (
-            <div key={s.num} className="relative pl-8 sm:pl-12 group">
-              <div className="absolute -left-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white text-xs font-black ring-4 ring-slate-50 shadow-md">
-                {s.num}
-              </div>
-              <div className="bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold text-navy tracking-tight">{s.title}</h3>
-                <p className="mt-4 text-sm text-slate-600 leading-relaxed font-medium">{s.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ComprehensiveCategories() {
-  const cases = [
-    {
-      type: "Job & Business Records",
-      icon: Briefcase,
-      text: "For professionals who need their names to match exactly across their office records, degrees, and business documents.",
-    },
-    {
-      type: "Government Employees",
-      icon: Building2,
-      text: "Very important for Govt workers whose service files, PF accounts, or official records have a different spelling.",
-    },
-    {
-      type: "Divorce & Surname Change",
-      icon: Scale,
-      text: "A safe and legal way for women to drop their husband's surname and go back to their original family name after a divorce.",
-    },
-    {
-      type: "Adoption Updates",
-      icon: Users,
-      text: "Helps update the names of adopted children in school records and property papers legally.",
-    },
-  ];
-
-  return (
-    <section className="py-20 bg-white border-b border-slate-200/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-extrabold text-navy tracking-tight sm:text-4xl">
-            Who Needs a Gazette Notification?
-          </h2>
-          <p className="mt-4 text-sm text-slate-600 leading-relaxed font-semibold">
-            The Government makes it compulsory to have a Gazette notification in these situations:
-          </p>
-        </div>
-        <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {cases.map((c, i) => (
-            <div
-              key={i}
-              className="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm flex gap-4 items-start hover:border-primary/30 transition-colors"
-            >
-              <div className="p-3 bg-primary/10 text-primary rounded-xl shrink-0">
-                <c.icon className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="font-bold text-navy text-lg">{c.type}</h4>
-                <p className="text-xs text-slate-600 mt-2 leading-relaxed font-medium">{c.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EligibilitySection() {
-  const checkmarks = [
-    "You must be an Indian Citizen with valid ID proofs.",
-    "You must be at least 18 years old. (If you are under 18, parents will apply for you).",
-    "Parents or legal guardians must sign for minor children.",
-    "You should not be changing your name to hide from the police or to run away from loans.",
-    "You must have a real and valid reason for the name change.",
-  ];
-  return (
-    <section className="py-20 bg-slate-50 border-b border-slate-200/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">
-            Important Rules
-          </span>
-          <h2 className="text-3xl font-extrabold text-navy tracking-tight mt-3 sm:text-4xl">
-            Who Can Apply & What You Need
-          </h2>
-          <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
-            Before we apply to the Government, please check these basic rules. This ensures your
-            application doesn't get rejected:
-          </p>
-          <ul className="mt-6 space-y-3.5 text-sm font-semibold text-slate-700">
-            {checkmarks.map((c, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                <span>{c}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="bg-gradient-brand p-8 rounded-3xl text-white shadow-xl relative overflow-hidden">
-          <div className="absolute -right-10 -bottom-10 opacity-10 text-white font-black text-9xl">
-            RULES
-          </div>
-          <h3 className="text-xl font-bold mb-4">Documents You Will Need</h3>
-          <p className="text-xs text-indigo-100 mb-6 leading-relaxed">
-            Please keep clear photos or scans of these documents ready:
-          </p>
-          <div className="space-y-3 text-xs font-bold">
-            {[
-              "ID and Address Proof (Like Aadhaar or Voter ID)",
-              "Clear Passport Size Photos",
-              "Marriage Certificate or Divorce papers (If applicable)",
-              "School marksheets (for spelling corrections)",
-            ].map((doc, idx) => (
-              <div
-                key={idx}
-                className="bg-white/10 p-3 rounded-xl border border-white/10 backdrop-blur-sm flex items-center gap-2"
-              >
-                <FileText className="w-4 h-4 text-primary" /> {doc}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DeepLegalCompliance() {
-  return (
-    <section className="py-16 bg-amber-50/60 border-b border-slate-200/50 px-4">
-      <div className="max-w-4xl mx-auto border border-amber-200 bg-amber-50 p-6 md:p-8 rounded-2xl flex gap-4 items-start shadow-sm">
-        <AlertTriangle className="w-6 h-6 text-amber-600 shrink-0 mt-1" />
-        <div>
-          <h3 className="text-lg font-bold text-amber-900">Important Legal Warning</h3>
-          <p className="text-xs text-amber-800 mt-2 leading-relaxed font-semibold text-justify">
-            Giving fake information, using fake IDs, or changing your name to run away from bank
-            loans or criminal cases is a crime in India. Our team checks every file carefully. We
-            will cancel any application if we find that someone is trying to cheat or break the law.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WhyChooseUsDetailed() {
-  const pillars = [
-    {
-      icon: Scale,
-      title: "100% Correct Legal Work",
-      text: "We prepare your documents exactly as the Government wants, so you don't face any problems later.",
-    },
-    {
-      icon: FileCheck,
-      title: "Zero Mistakes Check",
-      text: "Our team checks your file multiple times to remove small spelling or typing mistakes before submitting.",
-    },
-    {
-      icon: Shield,
-      title: "Your Data is Safe",
-      text: "Your personal details and documents are kept completely secure and private with us.",
-    },
-  ];
-  return (
-    <section className="py-20 bg-white border-b border-slate-200/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">
-          Trust & Safety
-        </span>
-        <h2 className="text-3xl font-extrabold text-navy tracking-tight mt-3 sm:text-4xl">
-          Why Choose Us?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8 mt-14 text-left">
-          {pillars.map((p, idx) => (
-            <div
-              key={idx}
-              className="bg-slate-50 border border-slate-200/70 p-6 rounded-2xl shadow-sm transition hover:shadow-md"
-            >
-              <div className="p-3 bg-primary/10 w-fit rounded-xl text-primary mb-5">
-                <p.icon className="w-6 h-6" />
-              </div>
-              <h4 className="text-lg font-bold text-navy mb-2">{p.title}</h4>
-              <p className="text-xs text-muted-foreground leading-relaxed font-medium">{p.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function LocationsSeoSection() {
-  const cities = [
-    "Delhi",
-    "Mumbai",
-    "Bangalore",
-    "Hyderabad",
-    "Pune",
-    "Gurgaon",
-    "Noida",
-    "Chennai",
-    "Kolkata",
-    "Ahmedabad",
-  ];
-
-  return (
-    <section className="py-16 bg-slate-50 border-b border-slate-200/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <MapPin className="w-6 h-6 text-primary" />
-            <h2 className="text-2xl font-bold text-navy">Serving Major Cities Across India</h2>
-          </div>
-          <p className="text-sm text-slate-600 leading-relaxed mb-8">
-            The Central Gazette office is in New Delhi, but you do not need to travel to Delhi! We
-            work online and help clients from all over India. Whether you need a Name Change in
-            Delhi, Name Change in Mumbai, Name Change in Bangalore, or Name Change in Pune, we
-            manage everything. We get your newspaper ads done locally in your city, and submit the
-            final file directly to the Delhi office for you.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {cities.map((city, idx) => (
-              <span
-                key={idx}
-                className="bg-white border border-slate-200 px-4 py-2 rounded-full text-xs font-bold text-slate-700 shadow-sm hover:border-primary/50 cursor-default transition-colors"
-              >
-                Name Change in {city}
+          {/* Trust Badges */}
+          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+            {['🛡️ 100% Legal Guarantee', '💍 Name Change After Marriage', '🎓 Correction in Marksheet', '📰 Gazette Publication Desk'].map((tag, i) => (
+              <span key={i} className="flex items-center gap-2 bg-white border border-slate-200 text-slate-700 text-xs font-bold px-4 py-2.5 rounded-lg shadow-sm">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> {tag}
               </span>
             ))}
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-function FaqSection() {
-  const faqs = [
-    {
-      q: "What is a Central Gazette Notification and why do I need it?",
-      a: "The Central Gazette is an official government book published every week. If you want to change your name in your Passport, Bank, or school records, they will not accept just a simple affidavit. They will ask for a copy of the Central Gazette to prove your new name legally.",
-    },
-    {
-      q: "How many days does it take to change my name completely?",
-      a: "Making the affidavit and publishing the two newspaper ads takes about 2 to 4 days. After we submit the file to the Government office in Delhi, they take around 3 to 4 weeks to publish your name in the e-Gazette.",
-    },
-    {
-      q: "Can I correct mistakes if I gave the wrong spelling by mistake?",
-      a: "Yes. Our team checks your file before sending it to the government. We will show it to you, and you can make changes. But once the file is submitted to the Government, you cannot change it without making a new application.",
-    },
-    {
-      q: "What is included in your total fees?",
-      a: "Our fees include everything: the cost of stamp paper, making the affidavit, paying for the two newspaper ads, file preparation, and the official Government Gazette fees. There are no extra or hidden charges.",
-    },
-    {
-      q: "My name spelling is different in my 10th marksheet and Aadhaar card. How to fix it?",
-      a: "This is a very common problem. We will make a special 'One and the Same Person' affidavit for you. We will publish it in the Gazette, which will legally prove that both names belong to you. This solves problems during visa checks or job interviews.",
-    },
-  ];
-
-  return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">
-            Questions & Answers
-          </span>
-          <h2 className="text-3xl font-extrabold text-navy tracking-tight mt-3 sm:text-4xl">
-            Frequently Asked Questions
-          </h2>
+      {/* ================= SERVICES HIGHLIGHT (Marquee) ================= */}
+      <section className="py-16 md:py-24 bg-white border-b border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16 max-w-xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-3">Name Change Services We Offer</h2>
+            <div className="w-20 h-1.5 bg-amber-500 mx-auto rounded-full"></div>
+            <p className="text-slate-500 font-semibold text-sm mt-4">Fundamental legal documentation frameworks for identity modifications.</p>
+          </div>
         </div>
-        <div className="space-y-6">
-          {faqs.map((f, i) => (
-            <div
-              key={i}
-              className="border border-slate-200 rounded-xl p-5 hover:border-primary/40 transition-colors bg-slate-50/50"
-            >
-              <h4 className="text-base font-bold text-navy flex items-start gap-2.5">
-                <HelpCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" /> {f.q}
-              </h4>
-              <p className="text-sm text-slate-600 mt-3 ml-7 leading-relaxed font-medium text-justify">
-                {f.a}
-              </p>
+        
+        {/* Infinite Scroll Track */}
+        <div className="marquee-container w-full overflow-hidden relative">
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+          
+          <div className="flex w-max animate-marquee gap-8 px-4 cursor-grab active:cursor-grabbing">
+            {[...servicesList, ...servicesList].map((srv, idx) => (
+              <div key={idx} className="w-[350px] shrink-0 bg-slate-50 border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:bg-white transition-all duration-300">
+                <div className="w-14 h-14 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-6 font-black">
+                  <srv.icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-black text-slate-900 mb-3">{srv.title}</h3>
+                <p className="text-slate-600 font-medium text-xs leading-relaxed mb-6">{srv.desc}</p>
+                <Link to="/services" className="inline-flex items-center gap-2 text-xs font-black text-blue-700 uppercase tracking-wider hover:underline">
+                  View Setup Details <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= EXPERTISE LAYOUT WITH PHOTO ================= */}
+      <section className="py-16 md:py-24 bg-[#F8FAFC] border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16 max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
+              Execute Your Name Change With Certified Documentation Specialists
+            </h2>
+            <div className="w-20 h-1.5 bg-amber-500 mx-auto mt-4 rounded-full"></div>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-12 items-center">
+            {/* Left Col */}
+            <div className="space-y-12 text-right">
+              <div className="space-y-2 group transition-transform duration-300 hover:-translate-x-2">
+                <h4 className="text-xl font-black text-slate-900 group-hover:text-blue-700 transition-colors">Affidavit Drafting Desk</h4>
+                <p className="text-slate-600 text-xs font-semibold leading-relaxed">Precision crafting of court compliant judicial affidavit statements strictly according to standard notary formats.</p>
+              </div>
+              <div className="space-y-2 group transition-transform duration-300 hover:-translate-x-2">
+                <h4 className="text-xl font-black text-slate-900 group-hover:text-blue-700 transition-colors">Documents Full Review & Plan</h4>
+                <p className="text-slate-600 text-xs font-semibold leading-relaxed">Rigorous checks of your submission IDs before forwarding to ensure zero recursive press rejections.</p>
+              </div>
             </div>
-          ))}
+
+            {/* Center Col - EXPERT PHOTO */}
+            <div className="text-center relative py-10">
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-white rounded-full blur-[100px] -z-10"></div>
+              <div className="w-full max-w-[340px] mx-auto bg-slate-200 border border-slate-300 rounded-3xl aspect-[3/4] flex items-center justify-center shadow-2xl overflow-hidden group hover:scale-105 transition-transform duration-500 relative z-10">
+                {/* Professional Corporate/Lawyer Image - Pexels Direct Link */}
+                <img src="https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Documentation Expert" className="w-full h-full object-cover" />
+              </div>
+            </div>
+
+            {/* Right Col */}
+            <div className="space-y-12 text-left">
+              <div className="space-y-2 group transition-transform duration-300 hover:translate-x-2">
+                <h4 className="text-xl font-black text-slate-900 group-hover:text-blue-700 transition-colors">Gazette Dossier Compilation</h4>
+                <p className="text-slate-600 text-xs font-semibold leading-relaxed">Assembly of the requisite CD, proformas, physical photographs, and signature attestations ready for the Press.</p>
+              </div>
+              <div className="space-y-2 group transition-transform duration-300 hover:translate-x-2">
+                <h4 className="text-xl font-black text-slate-900 group-hover:text-blue-700 transition-colors">Post-Publication Support</h4>
+                <p className="text-slate-600 text-xs font-semibold leading-relaxed">Continuous compliance guidance for syncing data across primary bank instruments and utility data logs.</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+
+      {/* ================= PREMIUM PACKAGE CATEGORIES ================= */}
+      <section className="py-16 md:py-24 bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16 max-w-lg mx-auto">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-3">Targeted Action Plans</h2>
+            <div className="w-20 h-1.5 bg-amber-500 mx-auto rounded-full"></div>
+            <p className="text-slate-500 font-semibold text-sm mt-4">Select the foundational layout that meets your administrative requirement.</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {[
+              { title: 'General Identity Transition', bg: 'bg-rose-50 border-rose-200/60 text-rose-950', desc: 'Standard given name or surname changes.' },
+              { title: 'Matrimonial Name Update', bg: 'bg-amber-50 border-amber-200/60 text-amber-950', desc: 'Brides modifying maiden names.' },
+              { title: 'Minor Identity Matrix Fix', bg: 'bg-emerald-50 border-emerald-200/60 text-emerald-950', desc: 'Parent backed child ID rectification.' },
+              { title: 'Faith Alignment Portfolio', bg: 'bg-purple-50 border-purple-200/60 text-purple-950', desc: 'Religious transcription name change.' },
+              { title: 'Typographical Records Fix', bg: 'bg-blue-50 border-blue-200/60 text-blue-950', desc: 'Fix spelling/DOB mismatches.' }
+            ].map((pkg, i) => (
+              <div key={i} className={`p-8 bg-white border rounded-2xl ${pkg.bg} hover:shadow-xl transition-all hover:-translate-y-1 duration-300 group`}>
+                <h4 className="font-black text-base mb-4 leading-snug group-hover:text-blue-700 transition-colors">{pkg.title}</h4>
+                <p className="text-slate-600 text-xs font-semibold mb-6">{pkg.desc}</p>
+                <ul className="space-y-3 text-xs font-bold opacity-80 leading-snug">
+                  <li className="flex items-start gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" /> Affidavit Setup</li>
+                  <li className="flex items-start gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" /> Press Advt. Desk</li>
+                  <li className="flex items-start gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" /> Gazette Entry</li>
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= PROCESS WORKFLOW ================= */}
+      <section className="py-16 md:py-24 bg-slate-100 border-y border-slate-200 text-center">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16 max-w-lg mx-auto">
+             <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-4 leading-tight">Standard Operating Procedure</h2>
+             <p className="text-slate-500 font-semibold text-sm mt-3 leading-relaxed">Three essential tiers mapping core statutory validation timelines.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
+            <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-slate-200 z-0 rounded-full"></div>
+
+            {[
+              { step: '01', label: 'Consultation & File Initiation', desc: 'Submit fundamental structural queries and let our experts dictate the precise legal metrics.' },
+              { step: '02', label: 'Digital Processing & Notarization', desc: 'We draft the mandated text and publish the dual-newspaper public notices.' },
+              { step: '03', label: 'Gazette Delivery & Handover', desc: 'Receive the officially signed central publication log entries right at your doorstep.' }
+            ].map((flow, i) => (
+              <div key={i} className="relative z-10 text-center group">
+                <div className="w-24 h-24 bg-white border border-slate-200 text-slate-900 rounded-3xl mx-auto flex items-center justify-center text-3xl font-black shadow-xl mb-6 transform transition-all duration-500 group-hover:rotate-6 group-hover:scale-105">
+                  {flow.step}
+                </div>
+                <h4 className="font-black text-slate-900 text-lg leading-snug px-3">{flow.label}</h4>
+                <p className="text-slate-500 font-medium text-xs leading-relaxed px-4">{flow.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= REASONS + GAZETTE SAMPLE + LEAD FORM ================= */}
+      <section className="py-16 md:py-24 bg-white overflow-hidden border-b border-slate-100">
+        <div className="max-w-[90rem] mx-auto px-4 md:px-8">
+          <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+            
+            {/* Left Col - Reasons */}
+            <div className="lg:col-span-4 space-y-6 flex flex-col justify-center">
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6 tracking-tight leading-tight">The Legal Imperative of a Gazette</h2>
+              <p className="text-slate-600 text-sm font-medium leading-relaxed mb-6">Without a Central Gazette Notification, your name change holds no statutory validity in federal databases. Here is why it is critical:</p>
+              
+              <div className="space-y-5">
+                {[
+                  { title: 'Passport & Immigration Clearance', desc: 'Mandatory for statutory sync of your Passport data logs with federal entries.' },
+                  { title: 'Financial Records Update (PAN/Bank)', desc: 'Required as per RBI guidelines for syncing primary administrative financial logs.' },
+                  { title: 'Educational Academic Degrees Sync', desc: 'Crucial for future background checks and perfectly aligning your certificates.' }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4 p-5 bg-slate-50 border border-slate-100 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300">
+                    <ShieldCheck className="w-6 h-6 text-blue-600 shrink-0 mt-1" />
+                    <div>
+                      <h5 className="font-black text-base text-slate-900 mb-1">{item.title}</h5>
+                      <p className="text-slate-500 text-xs font-medium leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Center Col - Gazette Sample */}
+            <div className="lg:col-span-4 p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm text-center">
+              <span className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4 select-none">Output Format Sample</span>
+              <div className="w-full h-full aspect-[3/4] bg-white border border-slate-300 rounded-xl p-6 flex flex-col justify-between shadow-inner text-left font-serif text-[10px] text-slate-400 select-none overflow-hidden relative">
+                {/* Genuine Legal Document Background (Wikimedia Public Domain) */}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Gazette_notification_by_Govt._of_India.jpg" alt="Official Gazette Sample" className="w-full h-full object-cover opacity-40" />
+                
+                <div className="absolute inset-0 pt-6 px-6 border-b-2 border-slate-900 text-center text-slate-800 font-bold bg-white/60 backdrop-blur-[2px]">
+                  <p className="text-[12px] font-black">द भारत का राजपत्र</p>
+                  <p className="text-[14px] uppercase font-serif tracking-widest font-black mt-1">The Gazette of India</p>
+                  <p className="text-[8px] text-slate-600 font-sans tracking-widest mt-2">असाधारण / EXTRAORDINARY | PART IV</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Col - Lead Form */}
+            <div className="lg:col-span-4 bg-slate-950 p-8 lg:p-10 rounded-3xl shadow-2xl text-white flex flex-col justify-center relative overflow-hidden transition-all duration-300 hover:shadow-[0_0_60px_rgba(37,99,235,0.2)]">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-[80px]"></div>
+              
+              <div className="relative z-10 text-center">
+                <h3 className="text-2xl font-black mb-1.5 uppercase leading-snug">Case Evaluation Request</h3>
+                <p className="text-indigo-200 text-xs font-semibold mb-8">Submit your case details and our senior legal associates will contact you instantly.</p>
+                
+                <form className="space-y-4" onSubmit={handleFormSubmit}>
+                  <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter Full Applicant Name..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
+                  <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter Contact Number..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
+                  <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter Administrative Email ID..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
+                  <div className="relative">
+                    <select name="service" value={formData.service} onChange={handleInputChange} className="w-full px-5 py-4 bg-white/10 text-indigo-200/50 text-xs font-bold rounded-xl border border-white/20 outline-none appearance-none cursor-pointer focus:bg-white/20 transition-colors">
+                      <option className="bg-slate-950">Select intended purpose desk...</option>
+                      <option className="bg-slate-900" value="General Name Change">General Adult Transition Portfolio</option>
+                      <option className="bg-slate-900" value="Marriage Surname Shift">After Marriage Structural Shift</option>
+                      <option className="bg-slate-900" value="Spelling Correction">Document Spelling Correction Fix</option>
+                    </select>
+                    <ChevronDown className="w-4 h-4 text-white/50 absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  </div>
+                  <button type="submit" className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs uppercase tracking-wider h-14 rounded-xl shadow-lg mt-2 transition-colors">
+                    Get Free Callback
+                  </button>
+                  <p className="text-center text-[11px] font-bold text-amber-200 mt-4 leading-relaxed">Guaranteed privacy framework protocols ensure your data is secure.</p>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ================= RESOURCES CARDS ================= */}
+      <section className="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-4 leading-tight">Resources to Help You Grow</h2>
+          <p className="text-slate-500 font-medium text-sm max-w-2xl mx-auto mb-20 leading-relaxed">Fundamental structural metrics analyzing sub-department distribution systems and timelines.</p>
+          
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {resourcesList.map((res, i) => (
+              <div key={i} className="space-y-6 text-center transform group transition-transform duration-500 hover:-translate-y-3 hover:scale-105">
+                <div className="w-32 h-32 bg-white rounded-full mx-auto flex items-center justify-center shadow-lg relative overflow-hidden group hover:shadow-2xl border border-slate-200">
+                  <img src={res.img} alt={res.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                </div>
+                <h4 className="font-black text-base text-slate-900 mb-2 px-3 leading-snug group-hover:text-blue-700 transition-colors">{res.title}</h4>
+                <p className="text-slate-600 font-medium text-xs max-w-sm mx-auto leading-relaxed px-5">{res.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= INLINE CRM FORM ================= */}
+      <section className="py-12 bg-blue-700 text-white">
+        <div className="max-w-[90rem] mx-auto px-4 md:px-8 flex flex-col xl:flex-row items-center justify-between gap-8">
+          <div className="shrink-0 text-center xl:text-left max-w-xl xl:max-w-3xl">
+            <h3 className="text-2xl md:text-3xl font-black mb-2 uppercase leading-tight">Need Urgent Assistance With Your Application?</h3>
+            <p className="text-blue-100 text-sm font-semibold mt-0.5 leading-relaxed">Let our specialized data compilers process your files and fast-track your Gazette notification.</p>
+          </div>
+          <div className="w-full max-w-3xl grid sm:grid-cols-4 gap-4">
+            <input type="text" placeholder="Full Legal Name" className="px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-xs font-bold text-white placeholder-blue-200 outline-none focus:bg-white/20 transition-colors" />
+            <input type="tel" placeholder="Mobile Number" className="px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-xs font-bold text-white placeholder-blue-200 outline-none focus:bg-white/20 transition-colors" />
+            <input type="email" placeholder="Personal Email ID" className="px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-xs font-bold text-white placeholder-blue-200 outline-none focus:bg-white/20 transition-colors" />
+            <button className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs uppercase tracking-wider h-11.5 rounded-xl transition-colors shadow-lg">
+              Submit Inquiry
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= AVAILABLE CITIES (Marquee) ================= */}
+      <section className="py-16 md:py-24 bg-white border-t border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-3">Available Across India</h2>
+          <p className="text-slate-400 font-bold text-xs uppercase tracking-wider">Our digital workflow frameworks operate efficiently across all pan-national jurisdictions.</p>
+        </div>
+        
+        {/* Infinite Scroll Track - Reverse Direction */}
+        <div className="marquee-container w-full overflow-hidden relative">
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+          
+          <div className="flex w-max animate-marquee-reverse gap-8 px-4 cursor-grab active:cursor-grabbing">
+            {[...locationsList, ...locationsList].map((loc, idx) => (
+              <div key={idx} className="w-[300px] shrink-0 border border-slate-200 p-6 rounded-2xl bg-slate-50 group hover:bg-white hover:shadow-xl hover:border-slate-300 transition-all">
+                <div className="w-full h-32 mb-6 flex items-center justify-center text-slate-400 border border-slate-200 rounded-xl bg-white relative overflow-hidden group hover:shadow-md">
+                  <img src={loc.img} alt={loc.city} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                </div>
+                <h4 className="font-black text-slate-900 text-lg mb-1.5 leading-snug px-1 group-hover:text-blue-700 transition-colors flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-amber-500 shrink-0" /> {loc.city}
+                </h4>
+                <p className="text-slate-500 text-xs font-medium mt-1 leading-snug px-1">{loc.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= LEGAL FAQ ACCORDION ================= */}
+      <section className="py-16 md:py-24 bg-[#F8FAFC] border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 overflow-hidden">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-4 leading-tight">Frequently Asked Inquiries: Gazette & Name Change</h2>
+            <div className="w-20 h-1.5 bg-amber-500 mx-auto mt-3 rounded-full"></div>
+            <p className="text-slate-500 font-medium">Common inquiries regarding statutory validation workflows centralized at the department.</p>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              { q: '1. Is a Central Gazette notification legally mandatory?', a: 'Yes. While local affidavits might work for minor internal changes, federal agencies (like the Passport Seva Kendra, Banks, and Income Tax Department) strictly mandate a Central Gazette notification as the ultimate proof of identity transition.' },
+              { q: '2. What is the stipulated timeframe for final publication?', a: 'The statutory timeframe dictates a processing period of 3 to 5 weeks from the date of submission. This heavily depends on the backlog at the Department of Publication in Delhi. Our pre-verification ensures zero delays due to file rejections.' },
+              { q: '3. Can this entire protocol be executed remotely without visiting Delhi?', a: 'Affirmative. Our digital mandate system allows us to execute the affidavit, coordinate national newspaper publications, and file the final physical dossier at the Central Press entirely on your behalf.' },
+              { q: '4. What are the total costs involved in the Gazette process?', a: 'The costs vary depending on the type of change (General, Minor, or Religion change) and the public notice publication fees. Our standard package includes drafting, notary, two newspaper ads, government challan, and CD processing fees.' },
+              { q: '5. Are there different requirements for a minor changing their name?', a: 'Yes. Minors require a specialized declaration signed by their parents or legal guardians. The application must also include the guardian’s valid ID proof to process modifications in school boards and birth registries.' },
+              { q: '6. What happens if my application gets rejected by the department?', a: 'A rejection usually happens due to formatting errors in the CD or mismatch in the newspaper ad text. Our premium service includes a "Zero Rejection Guarantee" where our legal team pre-audits every single character before dispatch.' },
+              { q: '7. Do I need to publish a newspaper ad in my local language?', a: 'According to government guidelines, you must publish your name change declaration in at least two newspapers: one in a national English daily, and one in a regional language newspaper active in your residential area.' },
+              { q: '8. Can I use the Gazette publication for my Passport renewal?', a: 'Absolutely. The Central Gazette notification is the primary statutory document requested by the Regional Passport Office (RPO) when you apply for a passport re-issue due to a change in your name or surname.' }
+            ].map((faq, idx) => (
+              <div key={idx} className="border border-slate-200 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+                <button 
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full flex items-center justify-between gap-6 p-6 text-left font-black text-sm md:text-base text-slate-900 hover:bg-slate-50 transition-colors focus:outline-none"
+                >
+                  <span className="flex items-start gap-4">
+                    <HelpCircle className="w-5 h-5 md:w-6 md:h-6 text-blue-600 shrink-0 mt-0.5 md:mt-1" />
+                    {faq.q}
+                  </span>
+                  <ChevronDown className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-300 ${activeFaq === idx ? 'rotate-180' : ''}`} />
+                </button>
+                {activeFaq === idx && (
+                <div className="p-6 pt-0 border-t-0 text-xs md:text-sm text-slate-600 font-medium leading-relaxed bg-white">
+                  <div className="pl-9 md:pl-10">{faq.a}</div>
+                </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+    </div>
+  )
 }

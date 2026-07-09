@@ -5,7 +5,6 @@ import {
   FileText,
   IdCard,
   Scale,
-  BookOpen,
   Check,
   ChevronRight,
   HelpCircle,
@@ -16,17 +15,17 @@ import { CTASection, PageHero } from "@/components/site";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Our Legal Services | Official Gazette Notification & Name Change Expert Delhi" },
+      { title: "Our Services | Name Change & Gazette Expert Delhi" },
       {
         name: "description",
         content:
-          "Explore expert legal documentation services in Delhi. We specialize in Central Gazette publication, marriage surname modifications, judicial affidavit preparation, newspaper ad management, and formal government registry re-alignments.",
+          "We offer simple and legally approved name change services in Delhi. From Gazette publication and affidavits to newspaper ads and ID updates, we handle it all.",
       },
-      { property: "og:title", content: "Our Legal Services | Name Change Expert Delhi" },
+      { property: "og:title", content: "Our Services | Name Change Expert Delhi" },
       {
         property: "og:description",
         content:
-          "Comprehensive legally-compliant portfolio tracking Central Gazette services, structured affidavits, and complete verification processing networks.",
+          "Complete Name Change services including affidavits, newspaper ads, and Central Gazette publication with 100% legal validity.",
       },
       { property: "og:url", content: "/services" },
     ],
@@ -40,142 +39,142 @@ const detailedServices = [
     category: "Main Name Change Services",
     icon: FileSignature,
     description:
-      "Our primary identity alignment division executes standard procedural structures to modify your name on federal registries through verified government gazette publications.",
+      "We help you legally change your name on all government records through the official Central Gazette publication process.",
     cards: [
       {
-        name: "Central Gazette Notification",
+        name: "Central Gazette Publication",
         context:
-          "The final statutory benchmark for any individual seeking a legally binding identity switch across India. This service handles entire application dossier compilation for presentation before the Department of Publication.",
+          "The ultimate legal proof required to change your name anywhere in India. We handle the entire process from creating the file to submitting it to the Govt. Press.",
         proceedings: [
-          "Compilation of digital text files",
-          "Ministry voucher fee payments",
-          "Official printing index setups",
+          "Prepare complete application file",
+          "Pay Govt. processing fees",
+          "Submit to Delhi Publication Dept.",
         ],
       },
       {
-        name: "Name Change After Marriage / Divorce",
+        name: "Name Change After Marriage/Divorce",
         context:
-          "Structured explicitly to assist newly-weds or legally separated individuals who want to modify their hereditary last names, integrate marital identifiers, or completely restore ancestral maiden names.",
+          "Specially designed for newly married women adding a surname, or divorced individuals wanting to go back to their maiden (original) name.",
         proceedings: [
-          "Matrimonial status adjustments",
-          "Maiden profile restoration",
-          "Decree mapping structures",
+          "Add husband's surname",
+          "Restore maiden name",
+          "Update marital records",
         ],
       },
       {
         name: "Spelling & Surname Corrections",
         context:
-          "Fixes extensive textual anomalies, missing middle labels, or deep layout printing errors in previous primary certificates that prevent smooth background verification pipelines.",
+          "Got a spelling mistake or missing surname in your old certificates? We help you fix these typing errors legally so you face no issues in background checks.",
         proceedings: [
-          "Clerical error resolution",
-          "Syllable match verification",
-          "Disparity mapping checks",
+          "Fix typing & spelling mistakes",
+          "Add/Remove middle name",
+          "Match old document records",
         ],
       },
       {
-        name: "First / Middle / Full Name Change",
+        name: "Complete Name Change",
         context:
-          "Complete strategic identity redesign driven by astrological guidance, personal alignment, numerological conversions, or individual choice with absolute legal validity.",
+          "Want to change your entire first and last name for astrology, numerology, or personal reasons? We make the switch 100% legally valid.",
         proceedings: [
-          "Astrological profile sync",
-          "Complete substitution sets",
-          "Legal credential binding",
+          "Astrology/Numerology changes",
+          "Adopt a completely new name",
+          "Secure full legal validity",
         ],
       },
     ],
   },
   {
-    category: "Documentation & Auxiliary Submissions",
+    category: "Legal Documentation Services",
     icon: FileText,
     description:
-      "Comprehensive structural compliance operations to draft flawless evidentiary records, manage media entries, and build absolute verification backups.",
+      "We prepare error-free legal documents, affidavits, and newspaper ads required to process your name change smoothly.",
     cards: [
       {
-        name: "Affidavit Preparation",
+        name: "Legal Affidavit Drafting",
         context:
-          "Drafting foundational court declarations on non-judicial stamp papers of recommended denominations, specifying precise identity transitions validated by certified executive magistrates.",
+          "We draft the main legal declaration on a non-judicial e-Stamp paper, exactly in the format required by the government and courts.",
         proceedings: [
-          "Judicial statement styling",
-          "Stamp paper procurement",
-          "Notary verification routing",
+          "Draft legal text format",
+          "Procure e-Stamp paper",
+          "Get Notary signature & seal",
         ],
       },
       {
         name: "Newspaper Advertisements",
         context:
-          "Fulfilling public disclosure laws by running standardized classified notices in two prominent news publications—one national English daily and one regional vernacular daily.",
+          "It is a legal rule to announce your name change in public. We publish your notice in two newspapers (one English and one local language).",
         proceedings: [
-          "Classified copy composition",
-          "Media house scheduling",
-          "Clipping sheet compilation",
+          "Write the ad content",
+          "Publish in a National daily",
+          "Publish in a Local daily",
         ],
       },
       {
-        name: "Gazette Application Dossier Preparation",
+        name: "Gazette File Preparation",
         context:
-          "Bundling complex operational forms, signed specimen declarations, identification cross-checks, and formatted diagnostic records into an absolute non-rejection system folder.",
+          "The government rejects files with even a small mistake. We organize your photos, IDs, forms, and CD into a perfect, rejection-proof folder.",
         proceedings: [
-          "Proforma indexing files",
-          "Dossier bundle generation",
-          "Defect screening filters",
+          "Organize all paperwork",
+          "Create digital CD files",
+          "Double-check for any errors",
         ],
       },
       {
-        name: "Digital Signature & Form Submission",
+        name: "Govt. Form Submission",
         context:
-          "Providing end-to-end support for digital record formatting and processing your identity files directly through the central ministry counters in New Delhi.",
+          "No need to stand in long queues. We take care of signing the final papers and submitting your file directly to the Ministry in Delhi.",
         proceedings: [
-          "Electronic signature loops",
-          "Counter delivery tracking",
-          "Departmental liaison audits",
+          "Finalize all signatures",
+          "Submit at Govt. counter",
+          "Track publication status",
         ],
       },
     ],
   },
   {
-    category: "Government Document Support Systems",
+    category: "ID & Bank Update Support",
     icon: IdCard,
     description:
-      "Post-gazette records alignment pathways to update your freshly published official identity layout smoothly across primary state and national registries.",
+      "Once your name is published in the Gazette, we guide you on how to easily update your new name across all major IDs.",
     cards: [
       {
-        name: "Aadhaar Record Mapping Support",
+        name: "Aadhaar Card Update Guide",
         context:
-          "Guiding the systematic update of identification parameters in core residential database cards to completely align with the newly published Central Gazette notification decree.",
+          "Step-by-step support on using your new Gazette certificate to update your name, address, and biometric details in the Aadhaar database.",
         proceedings: [
-          "Demographic database check",
-          "Biometric portal validation",
-          "Discrepancy mitigation sets",
+          "Match demographic data",
+          "Link with Gazette proof",
+          "Fix data mismatches",
         ],
       },
       {
-        name: "PAN Card Data Update",
+        name: "PAN Card Update",
         context:
-          "Synchronizing tax profiling structures with federal finance department servers to reflect the corrected legal name without affecting historical transaction records.",
+          "We help you sync your new legal name with the Income Tax Department without losing your old financial and tax transaction history.",
         proceedings: [
-          "Taxpayer record matching",
-          "Digital portal validation",
-          "Alphanumeric identity mapping",
+          "Match old tax records",
+          "Update Income Tax portal",
+          "Link with new legal name",
         ],
       },
       {
-        name: "Passport Name Change Operations",
+        name: "Passport Name Change",
         context:
-          "Comprehensive navigation through immigration compliance parameters to securely acquire re-issued international passports containing your modified identity data.",
+          "Changing a name on a Passport is strict. We guide you on which Annexure forms to fill and how to clear the passport office checks easily.",
         proceedings: [
-          "Consular form structuring",
-          "Annexure layout adjustments",
-          "Appointment processing logs",
+          "Fill correct Passport forms",
+          "Prepare required Annexures",
+          "Clear immigration checks",
         ],
       },
       {
-        name: "Voter ID & Banking Record Updates",
+        name: "Voter ID, Bank & Property",
         context:
-          "Comprehensive verification pathways to transition electoral profiles and complex financial assets, savings instruments, or stock holdings under the updated legal name.",
+          "Clear instructions on how to submit your Gazette copy to your bank branch, election commission, and property registry to update your accounts.",
         proceedings: [
-          "Electoral rolls modification",
-          "KYC database adjustment",
-          "Asset validation matching",
+          "Update Bank KYC",
+          "Change Voter ID name",
+          "Secure property papers",
         ],
       },
     ],
@@ -187,29 +186,24 @@ function ServicesPage() {
     <div className="bg-slate-50 text-slate-800 antialiased font-sans">
       {/* Page Hero Component */}
       <PageHero
-        eyebrow="Our Specialized Legal Portfolios"
+        eyebrow="Our Name Change Services"
         title={
           <>
-            Complete Name Change &amp; <span className="text-gradient-brand">Documentation</span>{" "}
-            Services
+            Complete Legal <span className="text-blue-600">Documentation</span>{" "}
+            Made Easy
           </>
         }
-        subtitle="Hassle-free, legally compliant administrative blueprints. Every phase—from legal drafting to Central Gazette publication—is managed by senior document specialists."
+        subtitle="Hassle-free and legally secure name change services. From drafting the first affidavit to delivering the final Gazette at your doorstep, we handle it all."
       />
 
       {/* Structural Informative Section */}
       <section className="py-12 bg-white border-b border-slate-200/60">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-extrabold text-navy tracking-tight">
-            Why Standardized Legal Documentation Matters
+          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+            Why Perfect Documentation Matters?
           </h2>
           <p className="mt-4 text-sm text-slate-600 leading-relaxed font-medium">
-            In any official state verification, a minor mismatch in spelling, surname structural
-            patterns, or parental initials can cause unexpected rejections during passport tracking,
-            immigration clearings, employment checks, or legacy wealth distribution. Our firm treats
-            your documentation as a vital asset. By following strict federal publication laws, we
-            ensure that your identity profiles are built cleanly, robustly, and with full legal
-            compliance.
+            When it comes to government IDs, even a tiny spelling mistake or wrong format can lead to rejected passports, stuck visas, or frozen bank accounts. We don't just fill forms; we bulletproof your documents. By strictly following government rules, we ensure your new identity is registered without a single hurdle.
           </p>
         </div>
       </section>
@@ -221,19 +215,19 @@ function ServicesPage() {
             {/* Category Headers */}
             <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-200 pb-6 gap-4">
               <div className="max-w-2xl">
-                <div className="flex items-center gap-3 text-primary mb-2">
+                <div className="flex items-center gap-3 text-blue-700 mb-2">
                   <group.icon className="w-6 h-6 shrink-0" />
-                  <span className="text-xs font-black uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full">
-                    Portfolio Segment 0{groupIndex + 1}
+                  <span className="text-xs font-black uppercase tracking-widest bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                    Category 0{groupIndex + 1}
                   </span>
                 </div>
-                <h2 className="text-3xl font-black text-navy tracking-tight">{group.category}</h2>
-                <p className="text-sm text-muted-foreground mt-2 font-medium">
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight">{group.category}</h2>
+                <p className="text-sm text-slate-500 mt-2 font-medium">
                   {group.description}
                 </p>
               </div>
-              <div className="hidden lg:block text-xs font-bold text-slate-400">
-                Statutory Regulatory Division
+              <div className="hidden lg:block text-xs font-bold text-slate-400 uppercase tracking-widest">
+                Expert Legal Processing
               </div>
             </div>
 
@@ -242,12 +236,12 @@ function ServicesPage() {
               {group.cards.map((card, cardIndex) => (
                 <div
                   key={cardIndex}
-                  className="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+                  className="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group"
                 >
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-brand opacity-[0.02] rounded-bl-full pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 opacity-50 rounded-bl-full pointer-events-none group-hover:bg-blue-100 transition-colors" />
                   <div>
-                    <h3 className="text-xl font-bold text-navy flex items-center gap-2 tracking-tight">
-                      <ChevronRight className="w-4 h-4 text-primary shrink-0" /> {card.name}
+                    <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2 tracking-tight group-hover:text-blue-700 transition-colors">
+                      <ChevronRight className="w-5 h-5 text-amber-500 shrink-0" /> {card.name}
                     </h3>
                     <p className="text-xs text-slate-600 mt-3 leading-relaxed font-medium">
                       {card.context}
@@ -256,16 +250,16 @@ function ServicesPage() {
 
                   {/* Procedural Highlights */}
                   <div className="mt-6 pt-4 border-t border-slate-100">
-                    <p className="text-[10px] font-black uppercase text-slate-400 tracking-wider mb-2">
-                      Operational Action Points
+                    <p className="text-[10px] font-black uppercase text-slate-400 tracking-wider mb-3">
+                      What We Do:
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {card.proceedings.map((proc, procIdx) => (
                         <span
                           key={procIdx}
-                          className="bg-slate-100 text-slate-700 text-[11px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1.5"
+                          className="bg-slate-50 text-slate-700 border border-slate-100 text-[11px] font-bold px-2.5 py-1.5 rounded-md flex items-center gap-1.5"
                         >
-                          <Check className="w-3 h-3 text-emerald-600 shrink-0" /> {proc}
+                          <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0" /> {proc}
                         </span>
                       ))}
                     </div>
@@ -279,54 +273,48 @@ function ServicesPage() {
 
       {/* General Compliance Matrix Section */}
       <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-brand opacity-10 pointer-events-none" />
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+        <div className="absolute inset-0 bg-blue-900 opacity-20 pointer-events-none blur-3xl" />
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
           <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
-              Regulatory Standards
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-300 bg-blue-500/20 px-3 py-1 rounded-full border border-blue-500/30">
+              Zero Rejection Policy
             </span>
-            <h2 className="text-3xl font-extrabold mt-4 tracking-tight sm:text-4xl">
-              Understanding the Rigorous Central Dossier Scrutiny
+            <h2 className="text-3xl font-black mt-5 tracking-tight sm:text-4xl text-white">
+              Why Our Strict Document Check Saves You Months
             </h2>
-            <p className="text-sm text-slate-300 mt-4 leading-relaxed font-medium">
-              Every file lodged at the Department of Publication undergoes rigorous screening checks
-              by verification desks. If your affidavit language lacks specific regulatory phrases,
-              if the public ads run in unauthorized newspapers, or if the digital signature code
-              structure contains errors, the application is promptly rejected. Our processing
-              platform uses pre-screened compliance patterns to ensure that your file meets all
-              requirements right from day one.
+            <p className="text-sm text-slate-300 mt-5 leading-relaxed font-medium">
+              The Government Press checks every application very strictly. If your lawyer uses the wrong format, publishes the ad in a non-approved newspaper, or burns the CD incorrectly, your file gets rejected and months are wasted. We use a proven checklist to ensure your file is 100% perfect before it even leaves our office.
             </p>
-            <div className="mt-6 flex items-start gap-3 bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
-              <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-              <p className="text-xs text-slate-300 leading-relaxed font-semibold">
-                Important Notice: We run deep compliance filtering on all documents to maintain full
-                security and completely eliminate structural errors before submission.
+            <div className="mt-8 flex items-start gap-3 bg-white/5 border border-white/10 p-5 rounded-xl backdrop-blur-md">
+              <AlertCircle className="w-6 h-6 text-amber-400 shrink-0" />
+              <p className="text-xs text-slate-200 leading-relaxed font-semibold">
+                Important: We offer a "Zero Rejection Guarantee." We review every single word of your documents to make sure the government accepts your file in the very first attempt.
               </p>
             </div>
           </div>
           <div className="grid gap-4">
             {[
               {
-                t: "Judicial Format Verification",
-                d: "Aligning stamp duties and state laws with standard federal templates.",
+                t: "100% Correct Affidavit Formats",
+                d: "We use the exact legal templates and stamp papers approved by the Central Government.",
               },
               {
-                t: "Media Channel Validations",
-                d: "Selecting licensed national and regional newspapers to ensure public notices are fully valid.",
+                t: "Approved Newspaper Ads",
+                d: "We only publish your notice in newspapers that are officially recognized by the Govt. Press.",
               },
               {
-                t: "Electronic Profile Checks",
-                d: "Formatting soft copy data into correct digital formats to align cleanly with ministerial indexing engines.",
+                t: "Error-Free Digital Files (CD)",
+                d: "We properly format and verify the soft-copy files required by the Ministry to prevent data errors.",
               },
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-white/10 border border-white/10 p-5 rounded-xl backdrop-blur-sm hover:bg-white/15 transition-all"
+                className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm hover:bg-white/10 hover:-translate-y-1 transition-all duration-300"
               >
-                <h4 className="font-bold text-base text-white flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0" /> {item.t}
+                <h4 className="font-bold text-base text-white flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" /> {item.t}
                 </h4>
-                <p className="text-xs text-slate-300 mt-2 leading-relaxed font-medium">{item.d}</p>
+                <p className="text-xs text-slate-300 mt-2 leading-relaxed font-medium pl-8">{item.d}</p>
               </div>
             ))}
           </div>
@@ -334,39 +322,39 @@ function ServicesPage() {
       </section>
 
       {/* Comprehensive FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-slate-50 border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">
-              Common Service Queries
+          <div className="text-center mb-16">
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-100 border border-blue-200 px-4 py-1.5 rounded-full">
+              Got Questions?
             </span>
-            <h2 className="text-3xl font-extrabold text-navy tracking-tight mt-3 sm:text-4xl">
-              Essential Portfolio Guidelines &amp; Insights
+            <h2 className="text-3xl font-black text-slate-900 tracking-tight mt-5 sm:text-4xl">
+              Frequently Asked Questions
             </h2>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-4">
             {[
               {
-                q: "Can I manage multiple name modifications within a single application dossier?",
-                a: "Yes. In cases where you need to combine typo updates, update a surname after marriage, or align middle strings across certificates, multiple changes can be bundled into a comprehensive application dossier to streamline the process.",
+                q: "Can I fix my spelling and change my surname in the same application?",
+                a: "Yes! If you have multiple corrections (like fixing a spelling and adding a husband's surname), we can combine them into a single Gazette application to save you time and money.",
               },
               {
-                q: "What newspaper networks are selected for the mandatory public announcements?",
-                a: "Our media division works exclusively with major national publications and widely circulated local daily newspapers that meet the verification standards set by the Central Gazette Department.",
+                q: "Which newspapers do you use for the advertisements?",
+                a: "We strictly use major National English dailies and reputed local language newspapers that are officially accepted by the Central Gazette Department.",
               },
               {
-                q: "Is an explicit offline physical appearance necessary at the Delhi offices?",
-                a: "No. Our centralized desk handles the entire local counter process, administrative follow-ups, and document filing workflows, meaning your physical presence is not required at the government counters.",
+                q: "Do I need to visit Delhi to submit the documents?",
+                a: "Not at all. Our team handles the entire process for you. From drafting to standing in line at the government office in Delhi, we manage everything while you sit at home.",
               },
             ].map((faq, i) => (
               <div
                 key={i}
-                className="border border-slate-200 rounded-xl p-5 hover:border-primary/40 transition-all bg-slate-50/50"
+                className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-blue-300 hover:shadow-md transition-all duration-300"
               >
-                <h4 className="text-base font-bold text-navy flex items-start gap-2.5">
-                  <HelpCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" /> {faq.q}
+                <h4 className="text-base font-black text-slate-900 flex items-start gap-3">
+                  <HelpCircle className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" /> {faq.q}
                 </h4>
-                <p className="text-xs text-slate-600 mt-2.5 ml-7 leading-relaxed font-semibold">
+                <p className="text-sm text-slate-600 mt-3 pl-8 leading-relaxed font-medium">
                   {faq.a}
                 </p>
               </div>
@@ -377,8 +365,8 @@ function ServicesPage() {
 
       {/* CTA Section */}
       <CTASection
-        title="Not sure which service fits your profile?"
-        subtitle="Get a free professional consultation — our team will guide you through the ideal statutory verification pathway."
+        title="Ready to Start Your Name Change Process?"
+        subtitle="Get a free consultation today. Our legal experts will review your case and explain the exact steps required."
       />
     </div>
   );
