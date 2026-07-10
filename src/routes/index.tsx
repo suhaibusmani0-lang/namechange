@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { 
-  Search, ShieldCheck, Scale, Users, BookOpen, Star, 
-  Check, ChevronDown, HelpCircle, FileText, Briefcase, Landmark, CheckCircle2,
-  ArrowRight, PhoneCall, FileSignature, MapPin, UserPlus, Edit3
+  Search, ShieldCheck, Scale, Users, Check, ChevronDown, HelpCircle, FileText, Briefcase, Landmark, CheckCircle2,
+  ArrowRight, PhoneCall, FileSignature, MapPin, UserPlus, Edit3, Loader2
 } from 'lucide-react'
 
 export const Route = createFileRoute('/')({
@@ -13,28 +12,95 @@ export const Route = createFileRoute('/')({
 function HomePage() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // States for Lead Form (Hero Section)
+  const [isLeadSubmitting, setIsLeadSubmitting] = useState(false);
+  const [leadFormData, setLeadFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    service: 'General Name Change'
+  });
+
+  // States for Quick Inquiry Form (Bottom Strip)
+  const [isQuickSubmitting, setIsQuickSubmitting] = useState(false);
+  const [quickFormData, setQuickFormData] = useState({
+    name: '',
+    phone: '',
+    email: ''
+  });
 
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    service: 'General Name Change'
-  })
+  // --- FORM HANDLERS (Connected to YOUR Custom Backend) ---
 
-  // Lead Form Submit Handler
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleLeadFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Lead form submitted:', formData);
-    alert('Thank you! Your case review request has been submitted securely.');
+    setIsLeadSubmitting(true);
+
+    try {
+      // 🔴 CHANGE URL HERE: Apne backend ka sahi endpoint yahan dalein
+      const response = await fetch("http://localhost:5000/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(leadFormData),
+      });
+
+      if (response.ok) {
+        alert('Thank you! Your case review request has been submitted securely. We will contact you soon.');
+        setLeadFormData({ name: '', phone: '', email: '', service: 'General Name Change' }); // Reset form
+      } else {
+        alert("Submission failed. Please check your backend connection.");
+      }
+    } catch (error) {
+      console.error("Error submitting lead:", error);
+      alert("Network error. Is your backend server running?");
+    } finally {
+      setIsLeadSubmitting(false);
+    }
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleQuickFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsQuickSubmitting(true);
+
+    try {
+      // 🔴 CHANGE URL HERE: Apne backend ka sahi endpoint yahan dalein
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(quickFormData),
+      });
+
+      if (response.ok) {
+        alert('Your urgent inquiry has been received. Our team will call you shortly!');
+        setQuickFormData({ name: '', phone: '', email: '' }); // Reset form
+      } else {
+        alert("Submission failed. Please check your backend connection.");
+      }
+    } catch (error) {
+      console.error("Error submitting contact:", error);
+      alert("Network error. Is your backend server running?");
+    } finally {
+      setIsQuickSubmitting(false);
+    }
+  }
+
+  // Input Change Handlers
+  const handleLeadInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setLeadFormData(prev => ({ ...prev, [name]: value }));
+  }
+
+  const handleQuickInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setQuickFormData(prev => ({ ...prev, [name]: value }));
   }
 
   // Search Bar Submit Handler
@@ -48,7 +114,7 @@ function HomePage() {
     setSearchQuery('');
   }
 
-  // --- ARRAYS FOR DYNAMIC CONTENT (With Non-Unsplash Guaranteed Images) ---
+  // --- ARRAYS FOR DYNAMIC CONTENT ---
 
   const servicesList = [
     { icon: Users, title: 'Adult Identity Transition', desc: 'A complete legal suite for modifying your given name or surname seamlessly across all government documents.' },
@@ -205,7 +271,6 @@ function HomePage() {
             <div className="text-center relative py-10">
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-white rounded-full blur-[100px] -z-10"></div>
               <div className="w-full max-w-[340px] mx-auto bg-slate-200 border border-slate-300 rounded-3xl aspect-[3/4] flex items-center justify-center shadow-2xl overflow-hidden group hover:scale-105 transition-transform duration-500 relative z-10">
-                {/* Professional Corporate/Lawyer Image - Pexels Direct Link */}
                 <img src="https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Documentation Expert" className="w-full h-full object-cover" />
               </div>
             </div>
@@ -284,7 +349,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ================= REASONS + GAZETTE SAMPLE + LEAD FORM ================= */}
+      {/* ================= REASONS + GAZETTE SAMPLE + LEAD FORM (Connected) ================= */}
       <section className="py-16 md:py-24 bg-white overflow-hidden border-b border-slate-100">
         <div className="max-w-[90rem] mx-auto px-4 md:px-8">
           <div className="grid lg:grid-cols-12 gap-8 items-stretch">
@@ -315,7 +380,6 @@ function HomePage() {
             <div className="lg:col-span-4 p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm text-center">
               <span className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4 select-none">Output Format Sample</span>
               <div className="w-full h-full aspect-[3/4] bg-white border border-slate-300 rounded-xl p-6 flex flex-col justify-between shadow-inner text-left font-serif text-[10px] text-slate-400 select-none overflow-hidden relative">
-                {/* Genuine Legal Document Background (Wikimedia Public Domain) */}
                 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Gazette_notification_by_Govt._of_India.jpg" alt="Official Gazette Sample" className="w-full h-full object-cover opacity-40" />
                 
                 <div className="absolute inset-0 pt-6 px-6 border-b-2 border-slate-900 text-center text-slate-800 font-bold bg-white/60 backdrop-blur-[2px]">
@@ -326,7 +390,7 @@ function HomePage() {
               </div>
             </div>
 
-            {/* Right Col - Lead Form */}
+            {/* Right Col - Lead Form (Connected) */}
             <div className="lg:col-span-4 bg-slate-950 p-8 lg:p-10 rounded-3xl shadow-2xl text-white flex flex-col justify-center relative overflow-hidden transition-all duration-300 hover:shadow-[0_0_60px_rgba(37,99,235,0.2)]">
               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-[80px]"></div>
               
@@ -334,12 +398,12 @@ function HomePage() {
                 <h3 className="text-2xl font-black mb-1.5 uppercase leading-snug">Case Evaluation Request</h3>
                 <p className="text-indigo-200 text-xs font-semibold mb-8">Submit your case details and our senior legal associates will contact you instantly.</p>
                 
-                <form className="space-y-4" onSubmit={handleFormSubmit}>
-                  <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter Full Applicant Name..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
-                  <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter Contact Number..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
-                  <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter Administrative Email ID..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
+                <form className="space-y-4" onSubmit={handleLeadFormSubmit}>
+                  <input type="text" name="name" value={leadFormData.name} onChange={handleLeadInputChange} placeholder="Enter Full Applicant Name..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
+                  <input type="tel" name="phone" value={leadFormData.phone} onChange={handleLeadInputChange} placeholder="Enter Contact Number..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
+                  <input type="email" name="email" value={leadFormData.email} onChange={handleLeadInputChange} placeholder="Enter Administrative Email ID..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
                   <div className="relative">
-                    <select name="service" value={formData.service} onChange={handleInputChange} className="w-full px-5 py-4 bg-white/10 text-indigo-200/50 text-xs font-bold rounded-xl border border-white/20 outline-none appearance-none cursor-pointer focus:bg-white/20 transition-colors">
+                    <select name="service" value={leadFormData.service} onChange={handleLeadInputChange} className="w-full px-5 py-4 bg-white/10 text-indigo-200/50 text-xs font-bold rounded-xl border border-white/20 outline-none appearance-none cursor-pointer focus:bg-white/20 transition-colors">
                       <option className="bg-slate-950">Select intended purpose desk...</option>
                       <option className="bg-slate-900" value="General Name Change">General Adult Transition Portfolio</option>
                       <option className="bg-slate-900" value="Marriage Surname Shift">After Marriage Structural Shift</option>
@@ -347,8 +411,8 @@ function HomePage() {
                     </select>
                     <ChevronDown className="w-4 h-4 text-white/50 absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   </div>
-                  <button type="submit" className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs uppercase tracking-wider h-14 rounded-xl shadow-lg mt-2 transition-colors">
-                    Get Free Callback
+                  <button type="submit" disabled={isLeadSubmitting} className="w-full bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-slate-950 font-black text-xs uppercase tracking-wider h-14 rounded-xl shadow-lg mt-2 transition-colors flex items-center justify-center gap-2">
+                    {isLeadSubmitting ? <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</> : "Get Free Callback"}
                   </button>
                   <p className="text-center text-[11px] font-bold text-amber-200 mt-4 leading-relaxed">Guaranteed privacy framework protocols ensure your data is secure.</p>
                 </form>
@@ -359,41 +423,21 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ================= RESOURCES CARDS ================= */}
-      <section className="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-4 leading-tight">Resources to Help You Grow</h2>
-          <p className="text-slate-500 font-medium text-sm max-w-2xl mx-auto mb-20 leading-relaxed">Fundamental structural metrics analyzing sub-department distribution systems and timelines.</p>
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {resourcesList.map((res, i) => (
-              <div key={i} className="space-y-6 text-center transform group transition-transform duration-500 hover:-translate-y-3 hover:scale-105">
-                <div className="w-32 h-32 bg-white rounded-full mx-auto flex items-center justify-center shadow-lg relative overflow-hidden group hover:shadow-2xl border border-slate-200">
-                  <img src={res.img} alt={res.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                </div>
-                <h4 className="font-black text-base text-slate-900 mb-2 px-3 leading-snug group-hover:text-blue-700 transition-colors">{res.title}</h4>
-                <p className="text-slate-600 font-medium text-xs max-w-sm mx-auto leading-relaxed px-5">{res.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= INLINE CRM FORM ================= */}
+      {/* ================= INLINE CRM FORM (Connected) ================= */}
       <section className="py-12 bg-blue-700 text-white">
         <div className="max-w-[90rem] mx-auto px-4 md:px-8 flex flex-col xl:flex-row items-center justify-between gap-8">
           <div className="shrink-0 text-center xl:text-left max-w-xl xl:max-w-3xl">
             <h3 className="text-2xl md:text-3xl font-black mb-2 uppercase leading-tight">Need Urgent Assistance With Your Application?</h3>
             <p className="text-blue-100 text-sm font-semibold mt-0.5 leading-relaxed">Let our specialized data compilers process your files and fast-track your Gazette notification.</p>
           </div>
-          <div className="w-full max-w-3xl grid sm:grid-cols-4 gap-4">
-            <input type="text" placeholder="Full Legal Name" className="px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-xs font-bold text-white placeholder-blue-200 outline-none focus:bg-white/20 transition-colors" />
-            <input type="tel" placeholder="Mobile Number" className="px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-xs font-bold text-white placeholder-blue-200 outline-none focus:bg-white/20 transition-colors" />
-            <input type="email" placeholder="Personal Email ID" className="px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-xs font-bold text-white placeholder-blue-200 outline-none focus:bg-white/20 transition-colors" />
-            <button className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs uppercase tracking-wider h-11.5 rounded-xl transition-colors shadow-lg">
-              Submit Inquiry
+          <form onSubmit={handleQuickFormSubmit} className="w-full max-w-3xl grid sm:grid-cols-4 gap-4">
+            <input type="text" name="name" value={quickFormData.name} onChange={handleQuickInputChange} required placeholder="Full Legal Name" className="px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-xs font-bold text-white placeholder-blue-200 outline-none focus:bg-white/20 transition-colors" />
+            <input type="tel" name="phone" value={quickFormData.phone} onChange={handleQuickInputChange} required placeholder="Mobile Number" className="px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-xs font-bold text-white placeholder-blue-200 outline-none focus:bg-white/20 transition-colors" />
+            <input type="email" name="email" value={quickFormData.email} onChange={handleQuickInputChange} required placeholder="Personal Email ID" className="px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-xs font-bold text-white placeholder-blue-200 outline-none focus:bg-white/20 transition-colors" />
+            <button type="submit" disabled={isQuickSubmitting} className="bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-slate-950 font-black text-xs uppercase tracking-wider h-11.5 rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2">
+               {isQuickSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : "Submit Inquiry"}
             </button>
-          </div>
+          </form>
         </div>
       </section>
 
