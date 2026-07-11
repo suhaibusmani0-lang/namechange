@@ -279,7 +279,8 @@ function ContactForm() {
     setStatus("loading");
 
     try {
-      const response = await fetch("https://namechange-hocg.onrender.com/api/contact", {
+      // Isko aise change karo:
+const response = await fetch("https://namechangeexpert.in/server/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -11,8 +11,9 @@ model ContactMessage {
   id        String   @id @default(uuid())
   name      String
   phone     String
+  email     String   @default("N/A")
   service   String
-  message   String
+  message   String?  
   createdAt DateTime @default(now())
 }
 
@@ -20,8 +21,8 @@ model BlogPost {
   id          String   @id @default(uuid())
   title       String
   excerpt     String
-  cover_image String?  // Question mark (?) ka matlab hai ki photo dalna optional hai
-  author      String   @default("Admin Team") // Agar koi naam na dale toh default ye jayega
+  cover_image String?
+  author      String   @default("Admin Team")
   slug        String   @unique
   publishedAt DateTime @default(now())
 }

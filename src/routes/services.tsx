@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   CheckCircle2,
   FileSignature,
   FileText,
   IdCard,
-  Scale,
   Check,
   ChevronRight,
   HelpCircle,
   AlertCircle,
+  Loader2,
+  ChevronDown
 } from "lucide-react";
 import { CTASection, PageHero } from "@/components/site";
 
@@ -182,6 +184,48 @@ const detailedServices = [
 ];
 
 function ServicesPage() {
+  // --- FORM STATE & HANDLER ---
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    service: 'General Name Change'
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  }
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Custom Backend Endpoint Call
+      const response = await fetch("https://namechangeexpert.in/server/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Thank you! Your case review request has been submitted securely. We will contact you soon.');
+        setFormData({ name: '', phone: '', email: '', service: 'General Name Change' }); // Reset form
+      } else {
+        alert("Submission failed. Please check your backend connection.");
+      }
+    } catch (error) {
+      console.error("Error submitting lead:", error);
+      alert("Network error. Is your backend server running?");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
     <div className="bg-slate-50 text-slate-800 antialiased font-sans">
       {/* Page Hero Component */}
@@ -321,6 +365,65 @@ function ServicesPage() {
         </div>
       </section>
 
+      {/* ================= LEAD FORM SECTION (Injected in Services Page) ================= */}
+      <section className="py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-6">
+              <span className="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1.5 rounded-full">
+                Free Consultation
+              </span>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                Need Help Choosing the Right Legal Service?
+              </h2>
+              <p className="text-slate-600 font-medium leading-relaxed">
+                Navigating legal documentation can be confusing. Submit your details, and our senior legal associates will review your case and guide you through the exact compliance steps required for your specific situation.
+              </p>
+              <ul className="space-y-4 pt-4">
+                {[
+                  "100% Free Initial Case Review",
+                  "Guaranteed Privacy & Data Security",
+                  "Expert Guidance on Gazette & Affidavits"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm font-bold text-slate-700">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500" /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right Form */}
+            <div className="bg-slate-950 p-8 lg:p-10 rounded-3xl shadow-2xl text-white relative overflow-hidden group hover:shadow-[0_0_50px_rgba(79,70,229,0.15)] transition-all duration-500">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 rounded-full blur-[80px] pointer-events-none"></div>
+              <div className="relative z-10">
+                <h3 className="text-2xl font-black mb-2 uppercase leading-snug">Case Evaluation Request</h3>
+                <p className="text-indigo-200 text-xs font-semibold mb-8">Fast-track your application today.</p>
+                
+                <form className="space-y-4" onSubmit={handleFormSubmit}>
+                  <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter Full Applicant Name..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
+                  <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter Contact Number..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
+                  <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter Administrative Email ID..." className="w-full px-5 py-4 bg-white/10 text-white text-xs font-bold rounded-xl border border-white/20 outline-none placeholder-indigo-200/50 focus:bg-white/20 transition-colors" required />
+                  <div className="relative">
+                    <select name="service" value={formData.service} onChange={handleInputChange} className="w-full px-5 py-4 bg-white/10 text-indigo-200/50 text-xs font-bold rounded-xl border border-white/20 outline-none appearance-none cursor-pointer focus:bg-white/20 transition-colors">
+                      <option className="bg-slate-950">Select intended purpose desk...</option>
+                      <option className="bg-slate-900" value="General Name Change">General Adult Transition Portfolio</option>
+                      <option className="bg-slate-900" value="Marriage Surname Shift">After Marriage Structural Shift</option>
+                      <option className="bg-slate-900" value="Spelling Correction">Document Spelling Correction Fix</option>
+                    </select>
+                    <ChevronDown className="w-4 h-4 text-white/50 absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  </div>
+                  <button type="submit" disabled={isSubmitting} className="w-full bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-slate-950 font-black text-xs uppercase tracking-wider h-14 rounded-xl shadow-lg mt-2 transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5">
+                    {isSubmitting ? <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</> : "Get Free Callback"}
+                  </button>
+                  <p className="text-center text-[11px] font-bold text-amber-200/70 mt-4 leading-relaxed">Guaranteed privacy framework protocols ensure your data is secure.</p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Comprehensive FAQ Section */}
       <section className="py-24 bg-slate-50 border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4">
@@ -363,11 +466,6 @@ function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <CTASection
-        title="Ready to Start Your Name Change Process?"
-        subtitle="Get a free consultation today. Our legal experts will review your case and explain the exact steps required."
-      />
     </div>
   );
 }
